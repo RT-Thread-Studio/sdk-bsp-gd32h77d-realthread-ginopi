@@ -10,8 +10,9 @@ This guide covers the SDK directory layout, project selection, hardware connecti
 - RT-Thread: 5.3.0.
 - RT-Thread Studio toolchain: GNU Arm Embedded 13.3.
 - Env: version 2.0 or later, with a configured GNU Arm Embedded toolchain.
-- MDK: Keil MDK 5.43 or compatible, Arm Compiler 6, GigaDevice `GD32H77x_78x_DFP` 0.6.1, and DAP-Link (CMSIS-DAP).
-- Download connection: SWD with DAP-Link/PyOCD in Studio, or DAP-Link (CMSIS-DAP) in MDK.
+- MDK: Keil MDK 5.43 or compatible, Arm Compiler 6, GigaDevice `GD32H77x_78x_DFP` 0.6.1, and either DAP-Link (CMSIS-DAP) or J-Link.
+- Download connection: SWD; Studio supports DAP-Link/PyOCD and J-Link; MDK supports DAP-Link (CMSIS-DAP) and J-Link.
+- J-Link: the software version currently used is `v9.76a`.
 - Console: UART1, PA2/PA3, AF7, 115200-8-N-1.
 - Projects: 16, including `Gino_template` and 15 examples.
 

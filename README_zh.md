@@ -27,7 +27,9 @@
 | 摄像头     | OV7670，QVGA RGB565，DCI + DMA                                  |
 | 以太网     | ENET1 RMII，默认 PHY 地址 2                                     |
 | Wi-Fi      | GD32VW553 AT 模块，UART4                                        |
-| 下载       | SWD；Studio 使用 DAP-Link/PyOCD，MDK 使用 DAP-Link（CMSIS-DAP） |
+| 下载       | SWD；Studio 支持 DAP-Link/PyOCD 和 J-Link，MDK 支持 DAP-Link（CMSIS-DAP）和 J-Link |
+
+J-Link 当前使用版本为 `v9.76a`。
 
 SDK 目录、工程选择、硬件连接和编译下载步骤见 [SDK 使用指南](docs/project-guide/README_zh.md)。
 
