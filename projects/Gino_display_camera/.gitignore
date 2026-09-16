@@ -31,4 +31,4 @@ Objects/
 RTE/
 __pycache__/
 JLinkLog.txt
-JLinkSettings.ini
+!/JLinkSettings.ini
