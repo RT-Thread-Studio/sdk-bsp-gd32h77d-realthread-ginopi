@@ -10,8 +10,9 @@
 - RT-Thread：5.3.0。
 - RT-Thread Studio 工具链：GNU Arm Embedded 13.3。
 - Env：2.0 或更新版本，并配置 GNU Arm Embedded 工具链。
-- MDK：Keil MDK 5.43 或兼容版本、Arm Compiler 6、GigaDevice `GD32H77x_78x_DFP` 0.6.1 和 DAP-Link（CMSIS-DAP）。
-- 下载接口：SWD；Studio 使用 DAP-Link/PyOCD，MDK 使用 DAP-Link（CMSIS-DAP）。
+- MDK：Keil MDK 5.43 或兼容版本、Arm Compiler 6、GigaDevice `GD32H77x_78x_DFP` 0.6.1，以及 DAP-Link（CMSIS-DAP）或 J-Link。
+- 下载接口：SWD；Studio 支持 DAP-Link/PyOCD 和 J-Link，MDK 支持 DAP-Link（CMSIS-DAP）和 J-Link。
+- J-Link：当前使用版本为 `v9.76a`。
 - 控制台：UART1，PA2/PA3，AF7，115200-8-N-1。
 - 工程数量：16 个，包括 `Gino_template` 和 15 个示例。
 
