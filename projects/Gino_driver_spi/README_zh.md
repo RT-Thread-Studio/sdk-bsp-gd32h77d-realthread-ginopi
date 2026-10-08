@@ -59,7 +59,21 @@ SPI 总线注册后空闲时不会产生波形，需要具体 SPI 设备发起�
 
 建议先阅读 `applications/main.c` 和 `applications/device_probe.c`，再沿数据路径进入对应驱动、组件或软件包。示例保留 MSH 命令，便于在不改动应用代码的情况下观察设备注册和运行状态。
 
-### 6.1 运行命令
+### 6.1 MDK5 工程生成
+
+在 Env 2.0 或更新版本的 PowerShell 环境中，从 SDK 根目录执行：
+
+```powershell
+cd projects\Gino_driver_spi
+.\mklinks.bat
+scons --target=mdk5
+```
+
+`mklinks.bat` 建立共享的 `rt-thread` 和 `libraries` 目录链接。
+
+执行后在本目录生成 `project.uvprojx`。修改功能配置或源码选择后，重新执行 `scons --target=mdk5` 更新工程。
+
+### 6.2 运行命令
 
 - `gino_device_probe`
 - `list_device`
@@ -69,7 +83,7 @@ SPI 总线注册后空闲时不会产生波形，需要具体 SPI 设备发起�
 
 `length` 范围为 1-256 字节，`count` 范围为 1-1000 轮，均使用十进制。命令首次运行时将 `spi3_loop` 设备挂载到 `spi3`，后续运行复用该设备。每轮发送变化的数据并同步接收，检查实际传输长度，再逐字节比较。当前 BSP 使用轮询收发，实际 SCK 频率由外设时钟和分频系数决定。
 
-### 6.2 运行步骤
+### 6.3 运行步骤
 
 1. 断开外部 SPI 从设备，将 PF1（MOSI）与 PF0（MISO）短接。
 2. 复位开发板，确认 UART1 控制台可用且 PC4 LED 正常闪烁。

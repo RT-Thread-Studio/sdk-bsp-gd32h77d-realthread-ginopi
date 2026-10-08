@@ -44,6 +44,22 @@ DMA 采集缓冲及两个预览缓冲均按 32 字节对齐。LCD 帧缓冲使�
 - `../../libraries/Board_Drivers/drv_ov7670.c`
 - `../../libraries/Board_Drivers/ports/camera/sensors/ov7670.c`
 
+### 6.1 MDK5 工程生成
+
+在 Env 2.0 或更新版本的 PowerShell 环境中，从 SDK 根目录执行：
+
+```powershell
+cd projects\Gino_display_camera
+.\mklinks.bat
+scons --target=mdk5
+```
+
+`mklinks.bat` 建立共享的 `rt-thread` 和 `libraries` 目录链接。本工程还会链接离线软件包 `LVGL-latest`、`gt911-latest`。
+
+执行后在本目录生成 `project.uvprojx`。修改功能配置或源码选择后，重新执行 `scons --target=mdk5` 更新工程。
+
+### 6.2 运行命令与步骤
+
 | 命令                     | 作用                       |
 | ------------------------ | -------------------------- |
 | `ov7670_preview start` | 请求在 LCD 上启动实时预览  |

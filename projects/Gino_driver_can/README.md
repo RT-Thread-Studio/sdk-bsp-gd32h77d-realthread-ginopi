@@ -61,7 +61,21 @@ The command returns after sending once and can be invoked again. Reception remai
 - `../../libraries/gd32_drivers/drv_can.c`
 - `../../libraries/gd32_drivers/config/can_config.h`
 
-### 6.1 Send Command
+### 6.1 Generate the MDK5 Project
+
+In a PowerShell session provided by Env 2.0 or later, run the following from the SDK root:
+
+```powershell
+cd projects\Gino_driver_can
+.\mklinks.bat
+scons --target=mdk5
+```
+
+`mklinks.bat` creates links to the shared `rt-thread` and `libraries` directories.
+
+This generates `project.uvprojx` in the current directory. After changing feature configuration or source selection, run `scons --target=mdk5` again to update the project.
+
+### 6.2 Send Command
 
 The arbitration bitrate is **500 kbit/s**. With `RT_CAN_USING_CANFD` defined, the application enables ISO CAN FD at **2 Mbit/s** for the data phase while also supporting classic frames.
 
@@ -72,7 +86,7 @@ The arbitration bitrate is **500 kbit/s**. With `RT_CAN_USING_CANFD` defined, th
 
 Each `gino_can_send` invocation sends one classic frame, waits 100 ms when CAN FD is enabled, then sends one FD frame and returns. Without CAN FD, only the classic frame is sent. Successful writes produce green `[TX]` logs through `LOG_I`; failed or timed-out writes produce red `[TX FAIL]` logs through `LOG_E`. The application does not automatically retry the command.
 
-### 6.2 Receive Output
+### 6.3 Receive Output
 
 The receive thread prints each external frame as one green `[RX]` line through `LOG_I`, including CAN/CANFD format, standard/extended ID, RTR, BRS, byte count, and the complete hexadecimal payload. The interrupt callback only signals the thread.
 
@@ -90,7 +104,7 @@ can1 normal mode: arbitration=500000 bit/s, ISO CAN FD data=2000000 bit/s
 [RX] can1 CANFD STD ID=0x00000124 RTR=0 BRS=1 LEN=64 DATA=00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F 20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F 30 31 32 33 34 35 36 37 38 39 3A 3B 3C 3D 3E 3F
 ```
 
-### 6.3 CAN FD Configuration
+### 6.4 CAN FD Configuration
 
 This project enables `RT_CAN_USING_CANFD` and has a 1152-byte non-blocking TX buffer for 16 `rt_can_msg` objects; the example uses blocking writes to preserve transmission order. Other projects can enable `Enable CAN-FD support` under `RT-Thread Components -> Device Drivers -> Using CAN device drivers`.
 
@@ -103,7 +117,7 @@ This project enables `RT_CAN_USING_CANFD` and has a 1152-byte non-blocking TX bu
 - A 64-byte CAN FD mailbox occupies 72 bytes, so the 512-byte message RAM holds at most seven mailboxes. With CAN FD compiled in, mailboxes 0-2 receive and 3-6 transmit. `RT_CANSND_BOX_NUM` accepts 1-3, leaving at least one TX mailbox for non-blocking sends. Without CAN FD compiled in, the original 16 RX / 16 TX layout is retained.
 - `RT_CAN_CMD_SET_CANFD` with `(void *)0U` restores classic CAN mode. Stop transmitting and drain the TX queues before changing configuration; active hardware TX returns `-RT_EBUSY`.
 
-### 6.4 Validation
+### 6.5 Validation
 
 1. Connect the transceiver, CANH/CANL, reference ground, and termination. Open UART1 at 115200-8-N-1.
 2. Set the external peer to normal mode at 500 kbit/s arbitration. With CAN FD enabled, also configure ISO CAN FD with a 2 Mbit/s data rate.

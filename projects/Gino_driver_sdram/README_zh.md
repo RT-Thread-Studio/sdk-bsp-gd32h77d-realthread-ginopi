@@ -57,7 +57,21 @@ SDRAM 不注册独立 `rt_device`。BSP 初始化成功后调用内存管理接�
 
 建议先阅读 `applications/main.c` 和 `applications/device_probe.c`，再沿数据路径进入对应驱动、组件或软件包。示例保留 MSH 命令，便于在不改动应用代码的情况下观察设备注册和运行状态。
 
-### 6.1 运行命令
+### 6.1 MDK5 工程生成
+
+在 Env 2.0 或更新版本的 PowerShell 环境中，从 SDK 根目录执行：
+
+```powershell
+cd projects\Gino_driver_sdram
+.\mklinks.bat
+scons --target=mdk5
+```
+
+`mklinks.bat` 建立共享的 `rt-thread` 和 `libraries` 目录链接。
+
+执行后在本目录生成 `project.uvprojx`。修改功能配置或源码选择后，重新执行 `scons --target=mdk5` 更新工程。
+
+### 6.2 运行命令
 
 - `gino_device_probe`
 - `free`
@@ -69,7 +83,7 @@ SDRAM 不注册独立 `rt_device`。BSP 初始化成功后调用内存管理接�
 
 测速使用当前 CPU、Cache 和 SDRAM 时序配置，写入计时包含每轮 D-Cache clean，读取计时包含每轮 invalidate，避免只读取写入后留在缓存中的数据。结果包含循环和系统调度开销，表示 CPU 顺序访问的有效吞吐率；不是 SDRAM 总线理论带宽。计时不足一个系统 tick 时显示 `N/A`。
 
-### 6.2 运行步骤
+### 6.3 运行步骤
 
 1. 检查供电、接线、外部模块和接口电平。
 2. 复位开发板，确认 UART1 控制台可用且 PC4 LED 正常闪烁。

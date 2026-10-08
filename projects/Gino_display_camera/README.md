@@ -44,6 +44,22 @@ Source paths below are relative to the project directory in the SDK repository:
 - `../../libraries/Board_Drivers/drv_ov7670.c`
 - `../../libraries/Board_Drivers/ports/camera/sensors/ov7670.c`
 
+### 6.1 Generate the MDK5 Project
+
+In a PowerShell session provided by Env 2.0 or later, run the following from the SDK root:
+
+```powershell
+cd projects\Gino_display_camera
+.\mklinks.bat
+scons --target=mdk5
+```
+
+`mklinks.bat` creates links to the shared `rt-thread` and `libraries` directories. This project also links the bundled packages: `LVGL-latest`, `gt911-latest`.
+
+This generates `project.uvprojx` in the current directory. After changing feature configuration or source selection, run `scons --target=mdk5` again to update the project.
+
+### 6.2 Runtime Commands and Operation Steps
+
 | Command | Function |
 | --- | --- |
 | `ov7670_preview start` | request live preview on the LCD |

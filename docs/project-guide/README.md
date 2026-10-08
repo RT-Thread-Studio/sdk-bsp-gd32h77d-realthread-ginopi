@@ -95,15 +95,11 @@ In an Env PowerShell session, enter the chosen project from the SDK root. For ex
 ```powershell
 cd projects\Gino_template
 .\mklinks.bat
-$env:RTT_CC = "gcc"
 $env:RTT_EXEC_PATH = "<gnu-arm-toolchain>\bin"
-scons --pyconfig-silent
 scons -j8
 ```
 
 Replace the toolchain path with the directory containing `arm-none-eabi-gcc`. `mklinks.bat` creates links to the shared `rt-thread` and `libraries` directories. SCons produces `rt-thread.elf`, `rtthread.hex`, and `rtthread.bin`; download `rtthread.bin` at `0x08000000`.
-
-After changing features with `menuconfig`, regenerate `rtconfig.h` using `scons --pyconfig-silent`. Run `scons --target=eclipse` when Eclipse project metadata needs regeneration.
 
 ### 5.2 MDK5 with Arm Compiler 6
 
@@ -112,13 +108,8 @@ Install the MDK dependencies listed in section 1. In an Env PowerShell session, 
 ```powershell
 cd projects\Gino_template
 .\mklinks.bat
-$env:RTT_CC = "keil"
-$env:RTT_EXEC_PATH = "C:\Keil_v5"
-scons --pyconfig-silent
-scons --target=mdk5 --project-name=project
+scons --target=mdk5
 ```
-
-Adjust `RTT_EXEC_PATH` to the MDK installation root. Open `project.uvprojx` and build the target matching the project directory. Select `CMSIS-DAP Debugger` under `Options for Target -> Debug`, then select the connected DAP-Link and the SWD interface in `Settings`. Download `Objects/rt-thread.axf` or `Objects/rt-thread.hex` through DAP-Link. The project uses `board/linker_scripts/link.sct` and the `GD32H77x_78x_CNVM_2M.FLM` and `GD32H77x_78x_ECNVM_7M_512K.FLM` flash algorithms.
 
 `template.uvprojx` and `template.uvoptx` hold the uVision defaults. SCons generates source groups, include paths, and defines from the current configuration. Regenerate the uVision project after changing configuration or source selection; generated source groups are overwritten.
 
