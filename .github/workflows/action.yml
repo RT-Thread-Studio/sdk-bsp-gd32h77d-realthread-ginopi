@@ -67,6 +67,7 @@ jobs:
           - Gino_driver_usb_host
           - Gino_driver_eth
           - Gino_display_lvgl
+          - Gino_display_lvgl8
           - Gino_display_camera
           - Gino_component_mqtt
           - Gino_factory

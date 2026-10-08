@@ -6,7 +6,7 @@
 
 ## 概览
 
-本仓库是 GD32H77D Gino 开发板的 RT-Thread Studio 板级支持包，基于 RT-Thread 5.3.0。SDK 共享 `rt-thread`、GD32 库和离线软件包，并提供 16 个独立工程，用于外设示例和应用演示。
+本仓库是 GD32H77D Gino 开发板的 RT-Thread Studio 板级支持包，基于 RT-Thread 5.3.0。SDK 共享 `rt-thread`、GD32 库和离线软件包，并提供 17 个独立工程，用于外设示例和应用演示。
 
 ![GD32H77D Gino](figures/board.png)
 
@@ -49,7 +49,8 @@ SDK 目录、工程选择、硬件连接和编译下载步骤见 [SDK 使用指�
 | `Gino_driver_usb_device` | USBHS0 Device                 | `usbd`                    | `list_device`                  |
 | `Gino_driver_usb_host`   | USBHS1 Host 与 U 盘           | `usbh`、`/udisk`        | `ls /udisk`                    |
 | `Gino_driver_eth`        | ENET1 RMII 以太网             | `e0`                      | `ifconfig`、`ping <gateway>` |
-| `Gino_display_lvgl`      | LCD、触摸与 LVGL              | `lcd`、`gt911`          | 自动显示 LVGL demo，通过触摸操作 |
+| `Gino_display_lvgl`      | LCD、触摸与 LVGL 9.x              | `lcd`、`gt911`          | 自动显示 LVGL 9.x demo，通过触摸操作 |
+| `Gino_display_lvgl8`      | LCD、触摸与 LVGL 8.3.11              | `lcd`、`gt911`          | 自动显示 LVGL 8.3.11 demo，通过触摸操作 |
 | `Gino_display_camera`    | OV7670 LCD 预览               | `ov7670`                  | `ov7670_preview start`         |
 | `Gino_component_mqtt`    | Wi-Fi 上的 SAL 与 kawaii-mqtt | `wifi0`                   | `gd32vw553_mqtt_start`         |
 | `Gino_factory`           | 综合开发板演示                | 多个设备                    | 综合触摸界面、`ifconfig`       |

@@ -2,6 +2,10 @@
 
 ## 1. Introduction
 
+This project uses **LVGL 9.x** from `../../packages/LVGL-latest`
+(currently the bundled 9.6 development version). For a separate fixed LVGL
+8.3.11 project, use [`Gino_display_lvgl8`](../Gino_display_lvgl8/README.md).
+
 This project is the GD32H77D Gino development board reference project for MIPI DSI LCD, GT911 and LVGL graphics. It is used to learn, configure, and validate LVGL Rendering, Input, and Double Buffering separately. The standalone project enables only the drivers and components required by this feature, and can be used as a reference for application development and integration.
 
 Primary device: `lcd`.
@@ -36,9 +40,24 @@ D-Cache remains disabled until SDRAM initialization and display-memory MPU setup
 
 ## 4. RT-Thread LVGL, Graphic, and Touch Device Interface
 
-The RT-Thread LVGL port creates an `LVGL` thread that calls `lv_timer_handler`. It uses the `lcd` graphic and `gt911` touch devices, with `lv_display_set_buffers` and a flush callback coordinating buffer handoff between LVGL and the BSP.
+The RT-Thread LVGL port creates an `LVGL` thread that calls `lv_timer_handler`. It uses the `lcd` graphic and `gt911` touch devices. LVGL 9 registers buffers through `lv_display_set_buffers`; LVGL 8 uses `lv_disp_draw_buf_init` and `lv_disp_drv_register`. The flush callback releases draw buffers after hardware finishes using them.
 
 Primary device: `lcd`. Use `list_device` and `gino_device_probe` first to check whether the device has been registered. Upper-layer file system, network, or GUI components still need separate validation for mount, link, or refresh state.
+
+### 4.1 LVGL 8 and 9 Compatibility
+
+`Gino_display_lvgl`, `Gino_display_lvgl8`, `Gino_display_camera`, and `Gino_factory` select their APIs automatically through `LVGL_VERSION_MAJOR`. The shared adapter is `../../libraries/Board_Drivers/lvgl_compat.h`. It covers display flush and input callback types, image and widget API names; each project's `lv_conf.h` configures native RGB565.
+
+Run `mklinks.bat` once when using the project inside the SDK repository
+(`sh mklinks.sh` on Linux). This links RT-Thread, the shared board libraries,
+GT911, and `LVGL-latest` into the project. The Studio SDK manifest also
+includes the matching offline package when creating a standalone project.
+`packages/SConscript` selects only the LVGL version configured in `.config` and
+`rtconfig.h`, so stale downloads are excluded. Regenerate MDK/Studio metadata
+after intentionally changing package versions. `LVGL_VERSION_MAJOR` is supplied
+by LVGL itself and must not be overridden manually.
+
+LVGL 8.3.11, 8.4.0, and the bundled 9.6 development version passed syntax checks of the affected sources. LVGL 8 buffer sizes are pixel counts, while LVGL 9 uses bytes. When camera support is disabled and the camera or factory project uses two scanout framebuffers, LVGL 8 renders full frames before vertical blank swaps; LVGL 9 uses direct rendering. Refresh rate and touch behavior require validation on the board.
 
 ## 5. Hardware
 
@@ -55,6 +74,7 @@ Source paths below are relative to the project directory in the SDK repository:
 - `applications/lv_port.c`
 - `applications/lv_conf.h`
 - `../../libraries/Board_Drivers/drv_lcd.c`
+- `../../libraries/Board_Drivers/lvgl_compat.h`
 - `../../packages/LVGL-latest/env_support/rt-thread/lv_rt_thread_port.c`
 
 Read `applications/main.c` and `applications/device_probe.c` first, then follow the data path into the corresponding driver, component, or package. The example keeps MSH commands so device registration and runtime state can be observed without changing application code.
