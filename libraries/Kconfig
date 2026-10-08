@@ -1,6 +1,9 @@
 config SOC_FAMILY_GD32
     bool
-    select PKG_USING_GD32_ARM_SERIES_DRIVER
+    help
+        This SDK bundles trimmed GD32H77x_78x CMSIS and peripheral libraries.
+        Project SConstruct files include them directly; keep the upstream
+        GD32 ARM driver packages disabled when updating software packages.
 
 config SOC_SERIES_GD32E50x
     bool
