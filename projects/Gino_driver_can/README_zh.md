@@ -61,7 +61,21 @@ msh /> gino_can_send
 - `../../libraries/gd32_drivers/drv_can.c`
 - `../../libraries/gd32_drivers/config/can_config.h`
 
-### 6.1 命令发送的数据
+### 6.1 MDK5 工程生成
+
+在 Env 2.0 或更新版本的 PowerShell 环境中，从 SDK 根目录执行：
+
+```powershell
+cd projects\Gino_driver_can
+.\mklinks.bat
+scons --target=mdk5
+```
+
+`mklinks.bat` 建立共享的 `rt-thread` 和 `libraries` 目录链接。
+
+执行后在本目录生成 `project.uvprojx`。修改功能配置或源码选择后，重新执行 `scons --target=mdk5` 更新工程。
+
+### 6.2 命令发送的数据
 
 默认仲裁段为 **500 kbit/s**。定义 `RT_CAN_USING_CANFD` 时，应用自动启用 ISO CAN FD，数据段为 **2 Mbit/s**，并保留经典 CAN 帧的收发能力。
 
@@ -72,7 +86,7 @@ msh /> gino_can_send
 
 每次执行 `gino_can_send` 先发送一帧经典 CAN，启用 CAN FD 时等待 100 ms 后再发送一帧 CAN FD，随后结束，不循环发送。关闭 `RT_CAN_USING_CANFD` 后，每次命令只发送第一帧。发送成功通过 `LOG_I` 打印绿色 `[TX]`，失败或等待完成超时通过 `LOG_E` 打印红色 `[TX FAIL]`，应用不会自动重试该命令。
 
-### 6.2 接收并打印到终端
+### 6.3 接收并打印到终端
 
 接收线程持续读取外部节点发送的帧，每收到一帧就通过 `LOG_I` 输出一行绿色 `[RX]`，包含帧类型、标准/扩展 ID、RTR、BRS、字节长度及全部十六进制数据。打印操作在接收线程中执行，中断回调只负责通知。
 
@@ -90,7 +104,7 @@ can1 normal mode: arbitration=500000 bit/s, ISO CAN FD data=2000000 bit/s
 [RX] can1 CANFD STD ID=0x00000124 RTR=0 BRS=1 LEN=64 DATA=00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F 10 11 12 13 14 15 16 17 18 19 1A 1B 1C 1D 1E 1F 20 21 22 23 24 25 26 27 28 29 2A 2B 2C 2D 2E 2F 30 31 32 33 34 35 36 37 38 39 3A 3B 3C 3D 3E 3F
 ```
 
-### 6.3 CAN FD 配置说明
+### 6.4 CAN FD 配置说明
 
 本工程已启用 `RT_CAN_USING_CANFD`，非阻塞发送缓冲区为 1152 字节，可存放 16 个 `rt_can_msg`；本示例使用阻塞发送保证发送顺序。其他工程可在 `RT-Thread Components -> Device Drivers -> Using CAN device drivers` 中启用 `Enable CAN-FD support`。
 
@@ -103,7 +117,7 @@ can1 normal mode: arbitration=500000 bit/s, ISO CAN FD data=2000000 bit/s
 - CAN FD 的 64 字节邮箱占用 72 字节，512 字节消息 RAM 最多容纳 7 个邮箱。启用编译选项后固定使用邮箱 0 至 2 接收、3 至 6 发送，`RT_CANSND_BOX_NUM` 允许 1 至 3，至少保留一个邮箱用于非阻塞发送。关闭编译选项后保留经典 CAN 的 16 接收、16 发送布局。
 - 用 `RT_CAN_CMD_SET_CANFD` 和 `(void *)0U` 切回经典 CAN。修改配置前停止发送并等待发送队列排空，硬件发送尚未完成时返回 `-RT_EBUSY`。
 
-### 6.4 验证步骤
+### 6.5 验证步骤
 
 1. 连接收发器、CANH/CANL、参考地和终端电阻，打开 UART1 串口终端，设置为 115200-8-N-1。
 2. 将外部 CAN 工具或另一块开发板设置为正常模式、仲裁段 500 kbit/s；本工程启用 CAN FD 时，对端同时设置 ISO CAN FD、数据段 2 Mbit/s。

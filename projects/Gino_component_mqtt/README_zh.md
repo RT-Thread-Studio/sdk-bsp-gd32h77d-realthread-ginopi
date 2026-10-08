@@ -70,14 +70,28 @@ GD32VW553 使用 UART4（PB12/PB13）通信，PC5 控制复位。需在本地配
 
 建议先阅读 `applications/main.c` 和 `applications/device_probe.c`，再沿数据路径进入对应驱动、组件或软件包。示例保留 MSH 命令，便于在不改动应用代码的情况下观察设备注册和运行状态。
 
-### 6.1 运行命令
+### 6.1 MDK5 工程生成
+
+在 Env 2.0 或更新版本的 PowerShell 环境中，从 SDK 根目录执行：
+
+```powershell
+cd projects\Gino_component_mqtt
+.\mklinks.bat
+scons --target=mdk5
+```
+
+`mklinks.bat` 建立共享的 `rt-thread` 和 `libraries` 目录链接。本工程还会链接离线软件包 `at_device-latest`、`kawaii-mqtt-latest`。
+
+执行后在本目录生成 `project.uvprojx`。修改功能配置或源码选择后，重新执行 `scons --target=mdk5` 更新工程。
+
+### 6.2 运行命令
 
 - `ifconfig`
 - `gd32vw553_mqtt_start`
 - `gd32vw553_mqtt_pub rtt/gino hello`
 - `gd32vw553_mqtt_stop`
 
-### 6.2 运行步骤
+### 6.3 运行步骤
 
 1. 检查供电、接线、外部模块和接口电平。
 2. 复位开发板，确认 UART1 控制台可用且 PC4 LED 正常闪烁。

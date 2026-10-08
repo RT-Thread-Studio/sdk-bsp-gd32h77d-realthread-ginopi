@@ -58,12 +58,26 @@ Source paths below are relative to the project directory in the SDK repository:
 
 Read `applications/main.c` and `applications/device_probe.c` first, then follow the data path into the corresponding driver, component, or package. The example keeps MSH commands so device registration and runtime state can be observed without changing application code.
 
-### 6.1 Runtime Commands
+### 6.1 Generate the MDK5 Project
+
+In a PowerShell session provided by Env 2.0 or later, run the following from the SDK root:
+
+```powershell
+cd projects\Gino_driver_usb_device
+.\mklinks.bat
+scons --target=mdk5
+```
+
+`mklinks.bat` creates links to the shared `rt-thread` and `libraries` directories.
+
+This generates `project.uvprojx` in the current directory. After changing feature configuration or source selection, run `scons --target=mdk5` again to update the project.
+
+### 6.2 Runtime Commands
 
 - `gino_device_probe`
 - `list_device`
 
-### 6.2 Operation Steps
+### 6.3 Operation Steps
 
 1. Check power, wiring, external modules, and interface logic levels.
 2. Reset the development board and confirm that the UART1 console is available and PC4 LED blinks normally.

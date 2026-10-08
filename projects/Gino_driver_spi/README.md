@@ -59,7 +59,21 @@ Source paths below are relative to the project directory in the SDK repository:
 
 Read `applications/main.c` and `applications/device_probe.c` first, then follow the data path into the corresponding driver, component, or package. The example keeps MSH commands so device registration and runtime state can be observed without changing application code.
 
-### 6.1 Runtime Commands
+### 6.1 Generate the MDK5 Project
+
+In a PowerShell session provided by Env 2.0 or later, run the following from the SDK root:
+
+```powershell
+cd projects\Gino_driver_spi
+.\mklinks.bat
+scons --target=mdk5
+```
+
+`mklinks.bat` creates links to the shared `rt-thread` and `libraries` directories.
+
+This generates `project.uvprojx` in the current directory. After changing feature configuration or source selection, run `scons --target=mdk5` again to update the project.
+
+### 6.2 Runtime Commands
 
 - `gino_device_probe`
 - `list_device`
@@ -69,7 +83,7 @@ Read `applications/main.c` and `applications/device_probe.c` first, then follow 
 
 `length` accepts 1-256 bytes and `count` accepts 1-1000 rounds, both in decimal. The command attaches a persistent `spi3_loop` device to `spi3` on first use and reuses it on subsequent runs. Each round sends a changing byte pattern while receiving, checks the transfer length, and compares every byte. The current BSP uses polling transfers; the actual SCK frequency depends on the peripheral clock and prescaler.
 
-### 6.2 Operation Steps
+### 6.3 Operation Steps
 
 1. Disconnect external SPI targets and short PF1 (MOSI) to PF0 (MISO).
 2. Reset the development board and confirm that the UART1 console is available and PC4 LED blinks normally.

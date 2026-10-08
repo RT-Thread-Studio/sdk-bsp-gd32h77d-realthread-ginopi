@@ -118,7 +118,21 @@ RT-Thread 层同时运行设备框架、DFS/FAL/FatFs、lwIP/netdev/SAL、at_dev
 
 `tests/run_host_tests.ps1` 使用本机 GCC 和模拟总线验证命令分发、扫描结果、超时停止及超时参数恢复，不编译固件。默认使用 MSYS2 UCRT64 GCC，可通过 `-Compiler` 指定路径。测试直接提取当前后端函数；不能替代上板检查接线、ACK 波形与实际扫描耗时。
 
-### 6.1 运行命令
+### 6.1 MDK5 工程生成
+
+在 Env 2.0 或更新版本的 PowerShell 环境中，从 SDK 根目录执行：
+
+```powershell
+cd projects\Gino_factory
+.\mklinks.bat
+scons --target=mdk5
+```
+
+`mklinks.bat` 建立共享的 `rt-thread` 和 `libraries` 目录链接。本工程还会链接离线软件包 `LVGL-latest`、`gt911-latest`、`at_device-latest`、`kawaii-mqtt-latest`、`i2c-tools-v1.0.0`。
+
+执行后在本目录生成 `project.uvprojx`。修改功能配置或源码选择后，重新执行 `scons --target=mdk5` 更新工程。
+
+### 6.2 运行命令
 
 - `ov7670_preview start`
 - `gd32vw553_mqtt_start`
@@ -126,7 +140,7 @@ RT-Thread 层同时运行设备框架、DFS/FAL/FatFs、lwIP/netdev/SAL、at_dev
 - `list_device`
 - `i2c scan hwi2c1 08 78`
 
-### 6.2 运行步骤
+### 6.3 运行步骤
 
 1. 检查供电、接线、外部模块和接口电平。
 2. 复位开发板，确认 UART1 控制台可用且 PC4 LED 正常闪烁。

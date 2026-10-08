@@ -57,7 +57,21 @@ Source paths below are relative to the project directory in the SDK repository:
 
 Read `applications/main.c` and `applications/device_probe.c` first, then follow the data path into the corresponding driver, component, or package. The example keeps MSH commands so device registration and runtime state can be observed without changing application code.
 
-### 6.1 Runtime Commands
+### 6.1 Generate the MDK5 Project
+
+In a PowerShell session provided by Env 2.0 or later, run the following from the SDK root:
+
+```powershell
+cd projects\Gino_driver_sdram
+.\mklinks.bat
+scons --target=mdk5
+```
+
+`mklinks.bat` creates links to the shared `rt-thread` and `libraries` directories.
+
+This generates `project.uvprojx` in the current directory. After changing feature configuration or source selection, run `scons --target=mdk5` again to update the project.
+
+### 6.2 Runtime Commands
 
 - `gino_device_probe`
 - `free`
@@ -69,7 +83,7 @@ The output table shows sequential `Write` and `Read` speeds: `Total KiB` is the 
 
 Measurements use the current CPU, cache, and SDRAM timing configuration. Write timing includes a D-Cache clean on every pass; read timing includes an invalidate on every pass to fetch data from SDRAM. Results include loop and scheduling overhead and represent effective CPU sequential throughput, not theoretical SDRAM bus bandwidth. Measurements shorter than one system tick show `N/A`.
 
-### 6.2 Operation Steps
+### 6.3 Operation Steps
 
 1. Check power, wiring, external modules, and interface logic levels.
 2. Reset the development board and confirm that the UART1 console is available and PC4 LED blinks normally.

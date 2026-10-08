@@ -118,7 +118,21 @@ Source paths below are relative to the project directory in the SDK repository:
 
 Read `applications/main.c` and `applications/device_probe.c` first, then follow the data path into the corresponding driver, component, or package. The example keeps MSH commands so device registration and runtime state can be observed without changing application code.
 
-### 6.1 Runtime Commands
+### 6.1 Generate the MDK5 Project
+
+In a PowerShell session provided by Env 2.0 or later, run the following from the SDK root:
+
+```powershell
+cd projects\Gino_factory
+.\mklinks.bat
+scons --target=mdk5
+```
+
+`mklinks.bat` creates links to the shared `rt-thread` and `libraries` directories. This project also links the bundled packages: `LVGL-latest`, `gt911-latest`, `at_device-latest`, `kawaii-mqtt-latest`, `i2c-tools-v1.0.0`.
+
+This generates `project.uvprojx` in the current directory. After changing feature configuration or source selection, run `scons --target=mdk5` again to update the project.
+
+### 6.2 Runtime Commands
 
 - `ov7670_preview start`
 - `gd32vw553_mqtt_start`
@@ -126,7 +140,7 @@ Read `applications/main.c` and `applications/device_probe.c` first, then follow 
 - `list_device`
 - `i2c scan hwi2c1 08 78`
 
-### 6.2 Operation Steps
+### 6.3 Operation Steps
 
 1. Check power, wiring, external modules, and interface logic levels.
 2. Reset the development board and confirm that the UART1 console is available and PC4 LED blinks normally.

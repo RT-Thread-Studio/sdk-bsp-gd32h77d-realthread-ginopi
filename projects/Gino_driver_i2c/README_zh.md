@@ -62,14 +62,28 @@ I2C1 默认使用 PH4/PB11（AF4）。外部总线需要合适的上拉电阻。
 
 建议先阅读 `applications/main.c` 和 `applications/device_probe.c`，再沿数据路径进入对应驱动、组件或软件包。示例保留 MSH 命令，便于在不改动应用代码的情况下观察设备注册和运行状态。
 
-### 6.1 运行命令
+### 6.1 MDK5 工程生成
+
+在 Env 2.0 或更新版本的 PowerShell 环境中，从 SDK 根目录执行：
+
+```powershell
+cd projects\Gino_driver_i2c
+.\mklinks.bat
+scons --target=mdk5
+```
+
+`mklinks.bat` 建立共享的 `rt-thread` 和 `libraries` 目录链接。本工程还会链接离线软件包 `i2c-tools-v1.0.0`。
+
+执行后在本目录生成 `project.uvprojx`。修改功能配置或源码选择后，重新执行 `scons --target=mdk5` 更新工程。
+
+### 6.2 运行命令
 
 - `gino_device_probe`
 - `i2c scan hwi2c1 08 78`
 
 扫描范围按十六进制解析，结束地址不包含在内：`08 78` 扫描 `0x08-0x77`，跳过保留地址。不指定范围时，软件包扫描 `0x00-0x7F`。`gino_device_probe` 只检查总线注册，不探测从设备。
 
-### 6.2 运行步骤
+### 6.3 运行步骤
 
 1. 检查供电、接线、外部模块和接口电平。
 2. 复位开发板，确认 UART1 控制台可用且 PC4 LED 正常闪烁。
