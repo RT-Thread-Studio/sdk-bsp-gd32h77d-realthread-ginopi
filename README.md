@@ -6,7 +6,7 @@ English | [中文](README_zh.md)
 
 ## Overview
 
-This repository provides an RT-Thread Studio board support package for the GD32H77D Gino board, based on RT-Thread 5.3.0. Shared RT-Thread, GD32 libraries, and offline packages are combined with 16 independent projects for peripherals and application demos.
+This repository provides an RT-Thread Studio board support package for the GD32H77D Gino board, based on RT-Thread 5.3.0. Shared RT-Thread, GD32 libraries, and offline packages are combined with 17 independent projects for peripherals and application demos.
 
 ![GD32H77D Gino](figures/board.png)
 
@@ -49,7 +49,8 @@ See the [SDK user guide](docs/project-guide/README.md) for the SDK directory lay
 | `Gino_driver_usb_device` | USBHS0 device                      | `usbd`                    | `list_device`                              |
 | `Gino_driver_usb_host`   | USBHS1 host and mass storage       | `usbh`, `/udisk`        | `ls /udisk`                                |
 | `Gino_driver_eth`        | ENET1 RMII Ethernet                | `e0`                      | `ifconfig`, `ping <gateway>`             |
-| `Gino_display_lvgl`      | LCD, touch, and LVGL               | `lcd`, `gt911`          | automatic LVGL demo with touch input |
+| `Gino_display_lvgl`      | LCD, touch, and LVGL 9.x               | `lcd`, `gt911`          | automatic LVGL 9.x demo with touch input |
+| `Gino_display_lvgl8`      | LCD, touch, and LVGL 8.3.11               | `lcd`, `gt911`          | automatic LVGL 8.3.11 demo with touch input |
 | `Gino_display_camera`    | OV7670 LCD preview                 | `ov7670`                  | `ov7670_preview start`                     |
 | `Gino_component_mqtt`    | SAL and kawaii-mqtt over Wi-Fi     | `wifi0`                   | `gd32vw553_mqtt_start`                     |
 | `Gino_factory`           | Integrated board demonstration     | multiple devices            | integrated touch UI, `ifconfig` |

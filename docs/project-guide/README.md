@@ -14,7 +14,7 @@ This guide covers the SDK directory layout, project selection, hardware connecti
 - Download connection: SWD; Studio supports DAP-Link/PyOCD and J-Link; MDK supports DAP-Link (CMSIS-DAP) and J-Link.
 - J-Link: the software version currently used is `v9.76a`.
 - Console: UART1, PA2/PA3, AF7, 115200-8-N-1.
-- Projects: 16, including `Gino_template` and 15 examples.
+- Projects: 17, including `Gino_template` and 16 examples.
 
 ### SDK Directory Layout
 
@@ -78,7 +78,7 @@ With `BSP_USING_LCD_MIPI` enabled, the first 3 MiB of SDRAM are reserved and the
 
 1. Install the GD32H77D-Gino BSP **v1.0.0** described by `sdk-bsp-gd32h77d-gino.yaml`.
 2. Create an RT-Thread project based on the `GD32H77D-Gino` board.
-3. Select `Gino_template` or one of the 15 examples.
+3. Select `Gino_template` or one of the 16 examples.
 4. Configure peripherals and packages in RT-Thread Settings, then build with GNU Arm Embedded 13.3.
 5. Connect UART1 at 115200-8-N-1 and the SWD download adapter.
 6. Select DAP-Link, target `GD32H77DIW`, and BIN mode; set the download start address to `0x08000000` and download `Debug/rtthread.bin`. These are the SDK's default download settings. Builds retain `Debug/rtthread.elf` for debugging.
@@ -140,7 +140,8 @@ The sidebar contains each example's README with its wiring, configuration, comma
 | `Gino_driver_usb_device` | data-capable USB cable | host enumerates the configured USB class |
 | `Gino_driver_usb_host` | FAT USB drive | `ls /udisk` |
 | `Gino_driver_eth` | Ethernet cable and network | `ifconfig`, `ping <gateway>` |
-| `Gino_display_lvgl` | LCD, touch, and SDRAM | LVGL demo starts automatically; operate it through touch |
+| `Gino_display_lvgl` | LCD, touch, and SDRAM | LVGL 9.x demo starts automatically; operate it through touch |
+| `Gino_display_lvgl8` | LCD, touch, and SDRAM | LVGL 8.3.11 demo starts automatically; operate it through touch |
 | `Gino_display_camera` | OV7670, LCD, and SDRAM | automatic preview; `ov7670_preview start` / `ov7670_preview stop` |
 | `Gino_component_mqtt` | configured Wi-Fi and broker | `gd32vw553_mqtt_start`, `gd32vw553_mqtt_pub <topic> <message>` |
 | `Gino_factory` | enabled board peripherals | operate the integrated display, camera, storage, and network examples |
@@ -163,4 +164,4 @@ Configure the Wi-Fi SSID/password, broker address/port, topics, client ID, and o
 
 ### Display and Camera
 
-`Gino_display_lvgl` starts the LVGL demo automatically. `Gino_display_camera` requests preview after LVGL initialization and displays QVGA RGB565 frames. Use `ov7670_preview stop` and `ov7670_preview start` to control preview. LCD framebuffers remain in the reserved SDRAM area; application allocations must use the configured heap.
+`Gino_display_lvgl` (9.x) and `Gino_display_lvgl8` (8.3.11) start the LVGL music demo automatically. `Gino_display_camera` requests preview after LVGL initialization and displays QVGA RGB565 frames. Use `ov7670_preview stop` and `ov7670_preview start` to control preview. LCD framebuffers remain in the reserved SDRAM area; application allocations must use the configured heap.

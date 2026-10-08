@@ -2,6 +2,10 @@
 
 ## 1. 简介
 
+本工程使用 `../../packages/LVGL-latest` 中的 **LVGL 9.x**
+（当前随 SDK 附带的是 9.6 开发版）。固定 8.3.11 版本请使用独立的
+[`Gino_display_lvgl8`](../Gino_display_lvgl8/README_zh.md) 工程。
+
 本工程是 GD32H77D Gino 开发板的 MIPI DSI LCD、GT911 与 LVGL 图形参考工程，用于单独学习、配置和验证 LVGL 渲染、输入与双缓冲。独立工程只启用该功能需要的驱动和组件，可作为应用开发和功能集成的参考。
 
 主参考设备：`lcd`。
@@ -36,9 +40,22 @@ D-Cache 在 SDRAM 初始化和显示内存 MPU 配置完成后才开启，LCD �
 
 ## 4. RT-Thread LVGL、Graphic 与 Touch 设备接口
 
-LVGL RT-Thread port 创建独立 `LVGL` 线程，调用 `lv_timer_handler`。显示端使用 `lcd` 图形设备，输入端使用 `gt911` touch device；`lv_display_set_buffers` 和 flush callback 建立 LVGL 与 BSP 的缓冲交接。
+LVGL RT-Thread port 创建独立 `LVGL` 线程，调用 `lv_timer_handler`。显示端使用 `lcd` 图形设备，输入端使用 `gt911` touch device。LVGL 9 使用 `lv_display_set_buffers` 注册缓冲区，LVGL 8 使用 `lv_disp_draw_buf_init` 和 `lv_disp_drv_register`；flush callback 在硬件使用完成后释放绘制缓冲区。
 
 主参考设备：`lcd`。设备是否已注册可先通过 `list_device` 和 `gino_device_probe` 判断；更上层的文件系统、网络或 GUI 组件还需继续验证其挂载、链路或刷新状态。
+
+### 4.1 LVGL 8 与 9 兼容
+
+`Gino_display_lvgl`、`Gino_display_lvgl8`、`Gino_display_camera` 和 `Gino_factory` 通过 `LVGL_VERSION_MAJOR` 自动选择接口，共用 `../../libraries/Board_Drivers/lvgl_compat.h`。适配覆盖显示刷新和触摸回调类型、图片及控件接口名称，各工程的 `lv_conf.h` 配置原生 RGB565。
+
+在 SDK 仓库内使用时，先运行一次 `mklinks.bat`（Linux 下运行
+`sh mklinks.sh`），建立 RT-Thread、共享板级库、GT911 和
+`LVGL-latest` 的工程链接。通过 Studio 的 SDK 示例入口创建独立工程时，
+清单会复制对应的离线软件包。`packages/SConscript` 只选择 `.config` 和
+`rtconfig.h` 配置的 LVGL 版本，排除目录中残留的其他版本。主动更改软件包版本后，
+需重新生成 MDK/Studio 工程配置。`LVGL_VERSION_MAJOR` 由 LVGL 自身提供，不要手动修改。
+
+相关源文件已通过 LVGL 8.3.11、8.4.0 和仓库内 9.6 开发版的语法检查。8.x 缓冲区大小按像素数填写，9.x 按字节数填写。摄像头和出厂工程关闭摄像头支持、使用两个扫描帧缓冲时，8.x 在垂直消隐换帧前绘制完整画面，9.x 使用 direct 渲染。刷新率和触摸效果仍需上板验证。
 
 ## 5. 硬件说明
 
@@ -55,6 +72,7 @@ LVGL RT-Thread port 创建独立 `LVGL` 线程，调用 `lv_timer_handler`。显
 - `applications/lv_port.c`
 - `applications/lv_conf.h`
 - `../../libraries/Board_Drivers/drv_lcd.c`
+- `../../libraries/Board_Drivers/lvgl_compat.h`
 - `../../packages/LVGL-latest/env_support/rt-thread/lv_rt_thread_port.c`
 
 建议先阅读 `applications/main.c` 和 `applications/device_probe.c`，再沿数据路径进入对应驱动、组件或软件包。示例保留 MSH 命令，便于在不改动应用代码的情况下观察设备注册和运行状态。

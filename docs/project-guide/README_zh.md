@@ -14,7 +14,7 @@
 - 下载接口：SWD；Studio 支持 DAP-Link/PyOCD 和 J-Link，MDK 支持 DAP-Link（CMSIS-DAP）和 J-Link。
 - J-Link：当前使用版本为 `v9.76a`。
 - 控制台：UART1，PA2/PA3，AF7，115200-8-N-1。
-- 工程数量：16 个，包括 `Gino_template` 和 15 个示例。
+- 工程数量：17 个，包括 `Gino_template` 和 16 个示例。
 
 ### SDK 目录
 
@@ -78,7 +78,7 @@
 
 1. 安装 `sdk-bsp-gd32h77d-gino.yaml` 描述的 GD32H77D-Gino BSP **v1.0.0**。
 2. 新建基于 `GD32H77D-Gino` 开发板的 RT-Thread 工程。
-3. 选择 `Gino_template` 或 15 个示例中的一个。
+3. 选择 `Gino_template` 或 16 个示例中的一个。
 4. 在 RT-Thread Settings 中配置需要的外设和软件包，使用 GNU Arm Embedded 13.3 构建。
 5. 连接 UART1，设置为 115200-8-N-1，并连接 SWD 下载器。
 6. 选择 DAP-Link、目标 `GD32H77DIW` 和 BIN 模式，将下载起始地址设为 `0x08000000`，下载 `Debug/rtthread.bin`。SDK 默认使用这些下载设置，构建时保留 `Debug/rtthread.elf` 用于调试。
@@ -140,7 +140,8 @@ scons --target=mdk5 --project-name=project
 | `Gino_driver_usb_device` | 支持数据传输的 USB 线 | 主机枚举配置的 USB class |
 | `Gino_driver_usb_host` | FAT U 盘 | `ls /udisk` |
 | `Gino_driver_eth` | 网线及可用网络 | `ifconfig`、`ping <gateway>` |
-| `Gino_display_lvgl` | LCD、触摸和 SDRAM | 自动启动 LVGL demo，通过触摸操作 |
+| `Gino_display_lvgl` | LCD、触摸和 SDRAM | 自动启动 LVGL 9.x demo，通过触摸操作 |
+| `Gino_display_lvgl8` | LCD、触摸和 SDRAM | 自动启动 LVGL 8.3.11 demo，通过触摸操作 |
 | `Gino_display_camera` | OV7670、LCD 和 SDRAM | 自动预览；`ov7670_preview start` / `ov7670_preview stop` |
 | `Gino_component_mqtt` | 已配置 Wi-Fi 和 broker | `gd32vw553_mqtt_start`、`gd32vw553_mqtt_pub <topic> <message>` |
 | `Gino_factory` | 已启用的板级外设 | 使用综合界面及摄像头、存储和网络示例 |
@@ -163,4 +164,4 @@ ls /flash
 
 ### 显示与摄像头
 
-`Gino_display_lvgl` 自动启动 LVGL demo。`Gino_display_camera` 在 LVGL 初始化后请求预览，显示 QVGA RGB565 图像。使用 `ov7670_preview stop` 和 `ov7670_preview start` 控制预览。LCD 帧缓冲位于 SDRAM 预留区，应用动态内存应从配置的 heap 分配。
+`Gino_display_lvgl`（9.x）和 `Gino_display_lvgl8`（8.3.11）自动启动 LVGL 音乐 demo。`Gino_display_camera` 在 LVGL 初始化后请求预览，显示 QVGA RGB565 图像。使用 `ov7670_preview stop` 和 `ov7670_preview start` 控制预览。LCD 帧缓冲位于 SDRAM 预留区，应用动态内存应从配置的 heap 分配。
