@@ -9,6 +9,8 @@ cwd = GetCurrentDir()
 lvgl_package = None
 if GetDepend('PKG_USING_LVGL'):
     version = GetDepend('PKG_LVGL_VER_NUM')
+    if isinstance(version, str):
+        version = int(version, 0)
     if version == 0x999999:
         lvgl_package = 'LVGL-latest'
     else:
