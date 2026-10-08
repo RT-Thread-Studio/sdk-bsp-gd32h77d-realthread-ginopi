@@ -12,7 +12,7 @@
 
 #ifdef PKG_USING_LVGL
 
-#include <lvgl.h>
+#include "lvgl_compat.h"
 #include <rtdevice.h>
 #include <board.h>
 
@@ -49,6 +49,10 @@
 static rt_device_t lcd_device;
 static struct rt_device_graphic_info lcd_info;
 static lv_display_t *lvgl_display;
+#if LVGL_VERSION_MAJOR == 8
+static lv_disp_draw_buf_t lcd_draw_buffer;
+static lv_disp_drv_t lcd_display_driver;
+#endif
 #if !LVGL_USE_DIRECT_FRAMEBUFFER
 rt_align(32) static uint8_t lcd_draw_buffer_1[LCD_DRAW_BUFFER_SIZE];
 rt_align(32) static uint8_t lcd_draw_buffer_2[LCD_DRAW_BUFFER_SIZE];
@@ -59,7 +63,7 @@ static rt_bool_t display_ready;
 #if LVGL_USE_DIRECT_FRAMEBUFFER
 static rt_bool_t flush_error_reported;
 #else
-static lv_display_t * volatile g_flushing_display;
+static lv_port_flush_driver_t * volatile g_flushing_display;
 #endif
 
 #ifdef BSP_USING_TOUCH_GT911
@@ -173,9 +177,9 @@ static void lcd_wait_scanline_away(const lv_area_t *area)
     while ((rt_tick_get() - start_tick) < timeout);
 }
 
-static void lcd_flush(lv_display_t *display,
+static void lcd_flush(lv_port_flush_driver_t *display,
                       const lv_area_t *area,
-                      uint8_t *color_p)
+                      lv_port_pixel_t *color_p)
 {
     rt_uint32_t width;
     rt_uint32_t height;
@@ -218,7 +222,7 @@ void IPA_IRQHandler(void)
         ipa_interrupt_flag_clear(IPA_INT_FLAG_FTF);
         if (g_flushing_display != RT_NULL)
         {
-            lv_display_flush_ready(g_flushing_display);
+            lv_port_flush_ready(g_flushing_display);
             g_flushing_display = RT_NULL;
         }
     }
@@ -242,17 +246,17 @@ static void lcd_mark_dirty_area(const lv_area_t *area)
     }
 }
 
-static void lcd_flush(lv_display_t *display,
+static void lcd_flush(lv_port_flush_driver_t *display,
                       const lv_area_t *area,
-                      uint8_t *color_p)
+                      lv_port_pixel_t *color_p)
 {
     rt_err_t result;
 
     lcd_mark_dirty_area(area);
 
-    if (!lv_display_flush_is_last(display))
+    if (!lv_port_flush_is_last(display))
     {
-        lv_display_flush_ready(display);
+        lv_port_flush_ready(display);
         return;
     }
 
@@ -274,7 +278,7 @@ static void lcd_flush(lv_display_t *display,
         flush_error_reported = RT_TRUE;
     }
 
-    lv_display_flush_ready(display);
+    lv_port_flush_ready(display);
 }
 #endif
 
@@ -320,6 +324,7 @@ void lv_port_disp_init(void)
     lcd_viewport_x = (rt_uint16_t)((lcd_info.width - LVGL_DISPLAY_WIDTH) / 2U);
     lcd_viewport_y = (rt_uint16_t)((lcd_info.height - LVGL_DISPLAY_HEIGHT) / 2U);
 
+#if LVGL_VERSION_MAJOR == 9
     lvgl_display = lv_display_create(LVGL_DISPLAY_WIDTH, LVGL_DISPLAY_HEIGHT);
     if (lvgl_display == RT_NULL)
     {
@@ -345,6 +350,32 @@ void lv_port_disp_init(void)
 #endif
     lv_display_set_flush_cb(lvgl_display, lcd_flush);
     lv_display_set_default(lvgl_display);
+#else
+    lv_disp_drv_init(&lcd_display_driver);
+#if LVGL_USE_DIRECT_FRAMEBUFFER
+    back_framebuffer = (rt_uint8_t *)lcd_info.framebuffer + framebuffer_size;
+    lv_disp_draw_buf_init(&lcd_draw_buffer, back_framebuffer, lcd_info.framebuffer,
+                          framebuffer_size / LCD_BYTES_PER_PIXEL);
+    /* Full frames keep vertical blank swaps independent of differences in
+     * direct-buffer synchronization between LVGL 8 releases. */
+    lcd_display_driver.full_refresh = 1;
+#else
+    lv_disp_draw_buf_init(&lcd_draw_buffer, lcd_draw_buffer_1, lcd_draw_buffer_2,
+                          sizeof(lcd_draw_buffer_1) / LCD_BYTES_PER_PIXEL);
+#endif
+    lcd_display_driver.hor_res = LVGL_DISPLAY_WIDTH;
+    lcd_display_driver.ver_res = LVGL_DISPLAY_HEIGHT;
+    lcd_display_driver.draw_buf = &lcd_draw_buffer;
+    lcd_display_driver.flush_cb = lcd_flush;
+    lvgl_display = lv_disp_drv_register(&lcd_display_driver);
+    if (lvgl_display == RT_NULL)
+    {
+        LOG_E("cannot create LVGL display");
+        rt_device_close(lcd_device);
+        return;
+    }
+    lv_disp_set_default(lvgl_display);
+#endif
 
 #if !LVGL_USE_DIRECT_FRAMEBUFFER
     lcd_ipa_init();
@@ -369,7 +400,7 @@ void lv_port_disp_init(void)
 }
 
 #ifdef BSP_USING_TOUCH_GT911
-static void touch_read(lv_indev_t *indev, lv_indev_data_t *data)
+static void touch_read(lv_port_indev_driver_t *indev, lv_indev_data_t *data)
 {
     struct rt_touch_data touch_data[TOUCH_POINT_COUNT];
     rt_size_t point_index;
@@ -428,6 +459,9 @@ void lv_port_indev_init(void)
 #ifdef BSP_USING_TOUCH_GT911
     rt_err_t result;
     lv_indev_t *input_device;
+#if LVGL_VERSION_MAJOR == 8
+    static lv_indev_drv_t input_driver;
+#endif
 
     touch_device = rt_device_find(TOUCH_DEVICE_NAME);
     if (touch_device == RT_NULL)
@@ -453,7 +487,15 @@ void lv_port_indev_init(void)
         return;
     }
 
+#if LVGL_VERSION_MAJOR == 9
     input_device = lv_indev_create();
+#else
+    lv_indev_drv_init(&input_driver);
+    input_driver.type = LV_INDEV_TYPE_POINTER;
+    input_driver.read_cb = touch_read;
+    input_driver.disp = lvgl_display;
+    input_device = lv_indev_drv_register(&input_driver);
+#endif
     if (input_device == RT_NULL)
     {
         LOG_E("cannot create LVGL input device");
@@ -462,9 +504,11 @@ void lv_port_indev_init(void)
         return;
     }
 
+#if LVGL_VERSION_MAJOR == 9
     lv_indev_set_type(input_device, LV_INDEV_TYPE_POINTER);
     lv_indev_set_read_cb(input_device, touch_read);
     lv_indev_set_display(input_device, lvgl_display);
+#endif
 
     LOG_I("%s registered as LVGL pointer", TOUCH_DEVICE_NAME);
 #endif

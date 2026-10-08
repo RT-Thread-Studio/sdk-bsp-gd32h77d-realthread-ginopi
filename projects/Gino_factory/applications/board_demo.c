@@ -12,7 +12,7 @@
 
 #if defined(PKG_USING_LVGL) && defined(BSP_USING_LVGL_BOARD_DEMO)
 
-#include <lvgl.h>
+#include "lvgl_compat.h"
 #include <rtdevice.h>
 #include <rtthread.h>
 #include <stdlib.h>
@@ -448,8 +448,13 @@ static void board_demo_files_table_event(lv_event_t *event)
 {
     char path[BOARD_DEMO_FS_PATH_MAX];
     const struct board_demo_fs_entry *entry;
+#if LVGL_VERSION_MAJOR == 8
+    uint16_t row;
+    uint16_t column;
+#else
     uint32_t row;
     uint32_t column;
+#endif
     int length;
     int result;
 

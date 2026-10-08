@@ -12,7 +12,7 @@
 
 #if defined(PKG_USING_LVGL) && defined(BSP_USING_OV7670)
 
-#include <lvgl.h>
+#include "lvgl_compat.h"
 #include <rtdevice.h>
 #include <rtthread.h>
 #include <board.h>
@@ -55,22 +55,32 @@ enum ov7670_preview_request
 static const lv_image_dsc_t preview_image_descriptors[OV7670_PREVIEW_BUFFER_COUNT] =
 {
     {
+#if LVGL_VERSION_MAJOR == 9
         .header.magic = LV_IMAGE_HEADER_MAGIC,
         .header.cf = LV_COLOR_FORMAT_RGB565,
         .header.flags = 0,
+        .header.stride = OV7670_WIDTH * 2U,
+#else
+        .header.always_zero = 0,
+        .header.cf = LV_IMG_CF_TRUE_COLOR,
+#endif
         .header.w = OV7670_WIDTH,
         .header.h = OV7670_HEIGHT,
-        .header.stride = OV7670_WIDTH * 2U,
         .data_size = OV7670_FRAME_SIZE,
         .data = OV7670_PREVIEW_BUFFER(0U),
     },
     {
+#if LVGL_VERSION_MAJOR == 9
         .header.magic = LV_IMAGE_HEADER_MAGIC,
         .header.cf = LV_COLOR_FORMAT_RGB565,
         .header.flags = 0,
+        .header.stride = OV7670_WIDTH * 2U,
+#else
+        .header.always_zero = 0,
+        .header.cf = LV_IMG_CF_TRUE_COLOR,
+#endif
         .header.w = OV7670_WIDTH,
         .header.h = OV7670_HEIGHT,
-        .header.stride = OV7670_WIDTH * 2U,
         .data_size = OV7670_FRAME_SIZE,
         .data = OV7670_PREVIEW_BUFFER(1U),
     },
