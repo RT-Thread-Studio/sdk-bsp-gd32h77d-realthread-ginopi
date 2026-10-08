@@ -12,6 +12,8 @@
 #define LV_CONF_H
 
 #define LV_COLOR_FORMAT_DEFAULT         LV_COLOR_FORMAT_RGB565
+#define LV_COLOR_DEPTH                  16
+#define LV_COLOR_16_SWAP                0
 #define LV_DISABLE_ASSERT_HANDLER_INCLUDE_WARNING 1
 
 #define LV_HOR_RES_MAX                  720

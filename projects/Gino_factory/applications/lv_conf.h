@@ -13,6 +13,8 @@
 #define LV_CONF_H
 
 #define LV_COLOR_FORMAT_DEFAULT         LV_COLOR_FORMAT_RGB565
+#define LV_COLOR_DEPTH                  16
+#define LV_COLOR_16_SWAP                0
 #define LV_DISABLE_ASSERT_HANDLER_INCLUDE_WARNING 1
 #define LV_USE_GINO_FACTORY_PROFILE     1
 
@@ -25,6 +27,9 @@
  * CPU-owned LVGL allocations use DTCM; DMA/draw buffers remain in AXI SRAM. */
 #undef LV_USE_STDLIB_MALLOC
 #define LV_USE_STDLIB_MALLOC            LV_STDLIB_BUILTIN
+/* LVGL 8 uses LV_MEM_CUSTOM to select its built-in allocator. */
+#undef LV_MEM_CUSTOM
+#define LV_MEM_CUSTOM                   0
 #define LV_MEM_SIZE                     (256U * 1024U)
 #define LV_MEM_ADR                      0
 #define LV_ATTRIBUTE_LARGE_RAM_ARRAY    __attribute__((section(".bss.lvgl_heap"), aligned(8)))
@@ -83,6 +88,11 @@
 #define LV_USE_DROPDOWN                 1
 #define LV_USE_IMAGE                    1
 #define LV_USE_IMAGEBUTTON              0
+/* LVGL 8 widget names; unknown options are ignored by LVGL 9. */
+#define LV_USE_BTN                      LV_USE_BUTTON
+#define LV_USE_BTNMATRIX                LV_USE_BUTTONMATRIX
+#define LV_USE_IMG                      LV_USE_IMAGE
+#define LV_USE_IMGBTN                   LV_USE_IMAGEBUTTON
 #define LV_USE_KEYBOARD                 1
 #define LV_USE_LABEL                    1
 #define LV_USE_LED                      0
