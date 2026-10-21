@@ -64,7 +64,7 @@ GD32VW553 使用 UART4（PB12/PB13）通信，PC5 控制复位。需在本地配
 以下源码路径以 SDK 仓库中的工程目录为基准：
 
 - `applications/gd32vw553_mqtt_demo.c`
-- `applications/gd32vw553_at_port.c`
+- `../../packages/at_device-latest/samples/at_sample_gd32vw553.c`
 - `../../packages/kawaii-mqtt-latest/`
 - `../../packages/at_device-latest/class/gd32vw553/`
 
