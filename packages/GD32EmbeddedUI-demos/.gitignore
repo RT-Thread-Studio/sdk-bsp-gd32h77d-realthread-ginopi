@@ -1,0 +1,8 @@
+simulator/build/
+simulator/cmake-build*/
+simulator/third_party/lvgl/*
+!simulator/third_party/lvgl/README.md
+simulator/third_party/freetype/*
+!simulator/third_party/freetype/README.md
+simulator/third_party/ffmpeg/*
+!simulator/third_party/ffmpeg/README.md

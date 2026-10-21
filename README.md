@@ -51,6 +51,7 @@ See the [SDK user guide](docs/project-guide/README.md) for the SDK directory lay
 | `Gino_driver_eth`        | ENET1 RMII Ethernet                | `e0`                      | `ifconfig`, `ping <gateway>`             |
 | `Gino_display_lvgl`      | LCD, touch, and LVGL 9.x               | `lcd`, `gt911`          | automatic LVGL 9.x demo with touch input |
 | `Gino_display_lvgl8`      | LCD, touch, and LVGL 8.3.11               | `lcd`, `gt911`          | automatic LVGL 8.3.11 demo with touch input |
+| `Gino_display_gd32embeddedui` | GD32EmbeddedUI and LVGL 8.3.11 | `lcd`, `gt911` | import generated UI code and run it on the LCD |
 | `Gino_display_camera`    | OV7670 LCD preview                 | `ov7670`                  | `ov7670_preview start`                     |
 | `Gino_component_mqtt`    | SAL and kawaii-mqtt over Wi-Fi     | `wifi0`                   | `gd32vw553_mqtt_start`                     |
 | `Gino_factory`           | Integrated board demonstration     | multiple devices            | integrated touch UI, `ifconfig` |
