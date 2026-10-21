@@ -1,0 +1,278 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gino_display_gd32embeddedui &mdash; GD32H77D Gino SDK</title>
+      <link rel="stylesheet" type="text/css" href="../../_static_en/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static_en/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static_en/version_menu.css?v=7fd031d4" />
+      <link rel="stylesheet" type="text/css" href="../../_static_en/custom.css?v=61cdd2cf" />
+      <link rel="stylesheet" type="text/css" href="../../_static_en/pdf_button.css?v=b2b664f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static_en/language_switch.css?v=e0239f85" />
+      <link rel="stylesheet" type="text/css" href="../../_static_en/dark_mode.css?v=19a577d0" />
+
+  
+      <script src="../../_static_en/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static_en/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static_en/documentation_options.js?v=a12e3537"></script>
+      <script src="../../_static_en/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static_en/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static_en/version_menu.js?v=d872e31e"></script>
+      <script src="../../_static_en/download_pdf.js?v=a35b4182"></script>
+      <script src="../../_static_en/version_info.js?v=193afac8"></script>
+      <script src="../../_static_en/language_switch.js?v=d198989a"></script>
+      <script src="../../_static_en/navigation_state.js?v=e7dbc4e8"></script>
+      <script src="../../_static_en/page_outline.js?v=bcc2396b"></script>
+    <script src="../../_static_en/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex_en.html" />
+    <link rel="search" title="Search" href="../../search_en.html" />
+    <link rel="next" title="Gino_display_lvgl" href="../Gino_display_lvgl/README.html" />
+    <link rel="prev" title="Gino_display_camera" href="../Gino_display_camera/README.html" />
+   
+  
+    <script>
+      window.DOCS_LANGUAGE = {"available": ["zh", "en"], "current": "en", "enabled": true, "target_docname": "projects/Gino_display_gd32embeddedui/README_zh", "target_language": "zh", "target_url": "README_zh.html"};
+      
+        window.DOCS_LANGUAGE.targetUrl = "README_zh.html";
+      
+    </script>
+  
+  
+  
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index_en.html" class="icon icon-home">
+            GD32H77D-Gino
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search_en.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div>
+  <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../_navigation/guides.html">Developer Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../docs/project-guide/README.html">GD32H77D Gino SDK User Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_navigation/getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_template/README.html">Gino_template</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_navigation/drivers.html">Peripheral Drivers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_can/README.html">Gino_driver_can</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_eth/README.html">Gino_driver_eth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_i2c/README.html">Gino_driver_i2c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_pwm/README.html">Gino_driver_pwm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_qspi_flash/README.html">Gino_driver_qspi_flash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_rtc/README.html">Gino_driver_rtc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_sdcard/README.html">Gino_driver_sdcard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_sdram/README.html">Gino_driver_sdram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_spi/README.html">Gino_driver_spi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_usb_device/README.html">Gino_driver_usb_device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_usb_host/README.html">Gino_driver_usb_host</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../_navigation/display.html">Display and Camera</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Gino_display_camera/README.html">Gino_display_camera</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Gino_display_gd32embeddedui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_display_lvgl/README.html">Gino_display_lvgl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_display_lvgl8/README.html">Gino_display_lvgl8</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_navigation/components.html">Components</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_component_mqtt/README.html">Gino_component_mqtt</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_navigation/factory.html">Factory Demo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_factory/README.html">Gino_factory</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index_en.html">GD32H77D-Gino</a>
+      </nav>
+
+      <div class="wy-nav-content">
+  <div class="sdk-reading-layout">
+    <div class="sdk-reading-main">
+      
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index_en.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../_navigation/display.html">Display and Camera</a></li>
+      <li class="breadcrumb-item active">Gino_display_gd32embeddedui</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="gino-display-gd32embeddedui">
+<h1>Gino_display_gd32embeddedui<a class="headerlink" href="#gino-display-gd32embeddedui" title="Link to this heading"></a></h1>
+<p>A standalone GD32H77D Gino example for GD32EmbeddedUI exports, using <strong>LVGL
+8.3.11</strong>, a <strong>720×720 RGB565 MIPI DSI LCD</strong> and <strong>GT911 touch</strong>.</p>
+<section id="editable-ui-package">
+<h2>1. Editable UI package<a class="headerlink" href="#editable-ui-package" title="Link to this heading"></a></h2>
+<p>The shared <a class="reference internal" href="#../../packages/GD32EmbeddedUI-demos/README.md"><span class="xref myst">GD32EmbeddedUI-demos package</span></a>
+contains the editable
+<a class="reference internal" href="#../../packages/GD32EmbeddedUI-demos/GD32Embeddedui.gdlvgl"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">GD32Embeddedui.gdlvgl</span></code></span></a>
+project, resources, generated code and custom application code. Open that file
+in GD32EmbeddedUI, edit the UI and generate code in place. The board project uses
+these same sources through its <code class="docutils literal notranslate"><span class="pre">packages/GD32EmbeddedUI-demos</span></code> directory link.</p>
+<p>The supplied design is empty, with <code class="docutils literal notranslate"><span class="pre">custom_init()</span></code> reserved for application
+initialization. Add a label or button in the designer and generate code to check
+display output and touch.</p>
+</section>
+<section id="hardware-and-initialization">
+<h2>2. Hardware and initialization<a class="headerlink" href="#hardware-and-initialization" title="Link to this heading"></a></h2>
+<p>The example reuses the LVGL 8 board configuration, LCD, GT911 and SDRAM drivers.
+Two 200-line RGB565 buffers in AXI SRAM feed IPA transfers to the SDRAM display
+framebuffer. The RT-Thread LVGL thread initializes LVGL, display and input,
+calls <code class="docutils literal notranslate"><span class="pre">ui_init()</span></code>, then handles rendering and input continuously.</p>
+<p>The generated entry already calls <code class="docutils literal notranslate"><span class="pre">custom_init()</span></code>. Do not initialize LVGL or
+call these entry points again from <code class="docutils literal notranslate"><span class="pre">main()</span></code>. Put application logic in <code class="docutils literal notranslate"><span class="pre">custom/</span></code>
+and synchronize any UI access from other threads with the LVGL thread.</p>
+</section>
+<section id="open-the-board-project">
+<h2>3. Open the board project<a class="headerlink" href="#open-the-board-project" title="Link to this heading"></a></h2>
+<p>From this directory:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">.\</span><span class="n">mklinks</span><span class="p">.</span><span class="n">bat</span>
+<span class="n">scons</span> <span class="p">-</span><span class="n">-target</span><span class="p">=</span><span class="n">mdk5</span>
+</pre></div>
+</div>
+<p>Open <code class="docutils literal notranslate"><span class="pre">project.uvprojx</span></code> in MDK5. The target command generates project files only.
+For RT-Thread Studio, import this directory or create the example through the
+SDK catalog. Update Studio source lists using <code class="docutils literal notranslate"><span class="pre">scons</span> <span class="pre">--target=eclipse</span></code> and
+refresh the project. On Linux, establish links with <code class="docutils literal notranslate"><span class="pre">sh</span> <span class="pre">mklinks.sh</span></code>.</p>
+<p>Shared dependencies are <code class="docutils literal notranslate"><span class="pre">rt-thread</span></code>, <code class="docutils literal notranslate"><span class="pre">libraries</span></code>, <code class="docutils literal notranslate"><span class="pre">LVGL-v8.3.11</span></code>, <code class="docutils literal notranslate"><span class="pre">gt911-latest</span></code>
+and <code class="docutils literal notranslate"><span class="pre">GD32EmbeddedUI-demos</span></code>. SDK exports copy the dependencies into the standalone
+project. In that case, edit its local
+<code class="docutils literal notranslate"><span class="pre">packages/GD32EmbeddedUI-demos/GD32Embeddedui.gdlvgl</span></code>.</p>
+</section>
+<section id="regenerate-the-ui">
+<h2>4. Regenerate the UI<a class="headerlink" href="#regenerate-the-ui" title="Link to this heading"></a></h2>
+<p>Keep the designer at LVGL 8.3.11, 720×720 and 16-bit color. Export images and
+fonts as C arrays/static fonts under <code class="docutils literal notranslate"><span class="pre">generated/</span></code>. SCons recursively collects
+C sources and include paths from <code class="docutils literal notranslate"><span class="pre">generated/</span></code> and <code class="docutils literal notranslate"><span class="pre">custom/</span></code>. After adding or
+removing files, regenerate the MDK/Studio project before building firmware.</p>
+<p><code class="docutils literal notranslate"><span class="pre">applications/lv_conf.h</span></code> includes the exported <code class="docutils literal notranslate"><span class="pre">ui_config.h</span></code> and
+<code class="docutils literal notranslate"><span class="pre">lv_conf_patch.h</span></code> so configuration applies to LVGL and the generated code.
+Windows simulator sources and third-party libraries are excluded from firmware.
+This example has no resource filesystem, FreeType or FFmpeg integration; raw
+files in <code class="docutils literal notranslate"><span class="pre">assets/</span></code> and PC media paths require additional board support.</p>
+</section>
+<section id="board-checks">
+<h2>5. Board checks<a class="headerlink" href="#board-checks" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>UART1 prints the project name; the PC4 LED blinks.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">list_device</span></code> and <code class="docutils literal notranslate"><span class="pre">gino_device_probe</span></code> to inspect <code class="docutils literal notranslate"><span class="pre">lcd</span></code> and <code class="docutils literal notranslate"><span class="pre">gt911</span></code>.</p></li>
+<li><p>Successful display initialization is followed by
+<code class="docutils literal notranslate"><span class="pre">GD32EmbeddedUI</span> <span class="pre">initialized</span> <span class="pre">(720x720,</span> <span class="pre">RGB565)</span></code>.</p></li>
+<li><p>The empty design has no controls. Add a button in the designer, generate
+code and verify touch on the board.</p></li>
+</ul>
+<p>Validation covers project generation and relevant source syntax checks.
+Full firmware build, flashing and hardware operation remain to be verified.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Gino_display_camera/README.html" class="btn btn-neutral float-left" title="Gino_display_camera" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Gino_display_lvgl/README.html" class="btn btn-neutral float-right" title="Gino_display_lvgl" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, CYFS.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      
+    </div>
+      <aside class="sdk-page-outline" role="navigation" aria-label="Local table of contents">
+        <div class="sdk-page-outline__title">Table of Contents</div>
+        <ul class="sdk-page-outline__list" aria-label="Article sections"></ul>
+        
+        <div class="sdk-page-outline__fallback" hidden><ul>
+<li><a class="reference internal" href="#">Gino_display_gd32embeddedui</a><ul>
+<li><a class="reference internal" href="#editable-ui-package">1. Editable UI package</a></li>
+<li><a class="reference internal" href="#hardware-and-initialization">2. Hardware and initialization</a></li>
+<li><a class="reference internal" href="#open-the-board-project">3. Open the board project</a></li>
+<li><a class="reference internal" href="#regenerate-the-ui">4. Regenerate the UI</a></li>
+<li><a class="reference internal" href="#board-checks">5. Board checks</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      </aside>
+  </div>
+
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="sdk-footer">
+    <div class="sdk-footer__inner">
+      <div class="sdk-footer__left">
+        <strong>GD32H77D-Gino</strong>
+        <span class="sdk-footer__sep">•</span> Version:1.0.0
+      </div>
+      <div class="sdk-footer__right">
+        Built:<span id="sdk-build-time"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      try {
+        var el = document.getElementById('sdk-build-time');
+        if (el) {
+          var d = new Date(document.lastModified);
+          el.textContent = d.toLocaleString();
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+
+</body>
+</html>

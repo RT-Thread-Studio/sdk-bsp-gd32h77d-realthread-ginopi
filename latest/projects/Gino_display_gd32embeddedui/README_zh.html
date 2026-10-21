@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gino_display_gd32embeddedui &mdash; GD32H77D Gino SDK</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/version_menu.css?v=7fd031d4" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=61cdd2cf" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pdf_button.css?v=b2b664f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/language_switch.css?v=e0239f85" />
+      <link rel="stylesheet" type="text/css" href="../../_static/dark_mode.css?v=19a577d0" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=86952a2f"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/version_menu.js?v=d872e31e"></script>
+      <script src="../../_static/download_pdf.js?v=a35b4182"></script>
+      <script src="../../_static/version_info.js?v=193afac8"></script>
+      <script src="../../_static/language_switch.js?v=d198989a"></script>
+      <script src="../../_static/navigation_state.js?v=e7dbc4e8"></script>
+      <script src="../../_static/page_outline.js?v=bcc2396b"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="Gino_display_lvgl" href="../Gino_display_lvgl/README_zh.html" />
+    <link rel="prev" title="Gino_display_camera" href="../Gino_display_camera/README_zh.html" />
+   
+  
+    <script>
+      window.DOCS_LANGUAGE = {"available": ["zh", "en"], "current": "zh", "enabled": true, "target_docname": "projects/Gino_display_gd32embeddedui/README", "target_language": "en", "target_url": "README.html"};
+      
+        window.DOCS_LANGUAGE.targetUrl = "README.html";
+      
+    </script>
+  
+  
+  
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index_zh.html" class="icon icon-home">
+            GD32H77D-Gino
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div>
+  <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../_navigation/guides_zh.html">开发指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../docs/project-guide/README_zh.html">GD32H77D Gino SDK 使用指南</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_navigation/getting_started_zh.html">快速开始</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_template/README_zh.html">Gino_template</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_navigation/drivers_zh.html">外设驱动</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_can/README_zh.html">Gino_driver_can</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_eth/README_zh.html">Gino_driver_eth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_i2c/README_zh.html">Gino_driver_i2c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_pwm/README_zh.html">Gino_driver_pwm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_qspi_flash/README_zh.html">Gino_driver_qspi_flash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_rtc/README_zh.html">Gino_driver_rtc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_sdcard/README_zh.html">Gino_driver_sdcard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_sdram/README_zh.html">Gino_driver_sdram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_spi/README_zh.html">Gino_driver_spi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_usb_device/README_zh.html">Gino_driver_usb_device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_driver_usb_host/README_zh.html">Gino_driver_usb_host</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../_navigation/display_zh.html">显示与摄像头</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Gino_display_camera/README_zh.html">Gino_display_camera</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Gino_display_gd32embeddedui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_display_lvgl/README_zh.html">Gino_display_lvgl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_display_lvgl8/README_zh.html">Gino_display_lvgl8</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_navigation/components_zh.html">组件示例</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_component_mqtt/README_zh.html">Gino_component_mqtt</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_navigation/factory_zh.html">出厂演示</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Gino_factory/README_zh.html">Gino_factory</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index_zh.html">GD32H77D-Gino</a>
+      </nav>
+
+      <div class="wy-nav-content">
+  <div class="sdk-reading-layout">
+    <div class="sdk-reading-main">
+      
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index_zh.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../_navigation/display_zh.html">显示与摄像头</a></li>
+      <li class="breadcrumb-item active">Gino_display_gd32embeddedui</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="gino-display-gd32embeddedui">
+<h1>Gino_display_gd32embeddedui<a class="headerlink" href="#gino-display-gd32embeddedui" title="Link to this heading"></a></h1>
+<p>GD32H77D Gino 开发板运行 GD32EmbeddedUI 导出界面的独立工程。
+使用 <strong>LVGL 8.3.11、720×720 MIPI DSI LCD、RGB565、GT911 触摸</strong>。</p>
+<section id="ui">
+<h2>1. 可编辑的 UI 软件包<a class="headerlink" href="#ui" title="Link to this heading"></a></h2>
+<p>UI 放在共享软件包
+<a class="reference internal" href="#../../packages/GD32EmbeddedUI-demos/README_zh.md"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">../../packages/GD32EmbeddedUI-demos</span></code></span></a>，
+通过本工程 <code class="docutils literal notranslate"><span class="pre">packages/GD32EmbeddedUI-demos</span></code> 目录链接引用。
+直接用 GD32EmbeddedUI 打开软件包内的
+<a class="reference internal" href="#../../packages/GD32EmbeddedUI-demos/GD32Embeddedui.gdlvgl"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">GD32Embeddedui.gdlvgl</span></code></span></a>，
+即可继续编辑、保存和生成代码，板端构建会读取同一份导出结果。</p>
+<p>当前附带空白设计工程，<code class="docutils literal notranslate"><span class="pre">custom_init()</span></code> 保留为应用初始化入口。
+可以在设计器中添加标签或按钮，保存并生成代码后验证显示和触摸。</p>
+</section>
+<section id="id1">
+<h2>2. 硬件与运行流程<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>复用 <code class="docutils literal notranslate"><span class="pre">Gino_display_lvgl8</span></code> 的板级配置和显示/触摸适配：</p>
+<ul class="simple">
+<li><p>LCD、GT911、SDRAM 由现有板级驱动初始化。</p></li>
+<li><p>两个 200 行 RGB565 绘制缓冲位于 AXI SRAM，IPA 将绘制结果复制到 SDRAM 帧缓冲。</p></li>
+<li><p>RT-Thread 的 LVGL 线程依次初始化 LVGL、显示、触摸，然后调用 <code class="docutils literal notranslate"><span class="pre">ui_init()</span></code>。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ui_init()</span></code> 内部调用 <code class="docutils literal notranslate"><span class="pre">custom_init()</span></code>；LVGL 线程持续处理刷新和触摸事件。</p></li>
+</ul>
+<p>不要在 <code class="docutils literal notranslate"><span class="pre">main()</span></code> 中再次初始化 LVGL 或调用 <code class="docutils literal notranslate"><span class="pre">ui_init()</span></code>。应用逻辑写在软件包的
+<code class="docutils literal notranslate"><span class="pre">custom/</span></code> 中；从其他线程更新 UI 时，需要与 LVGL 线程进行同步。</p>
+</section>
+<section id="id2">
+<h2>3. 打开板级工程<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>在本工程目录执行：</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">.\</span><span class="n">mklinks</span><span class="p">.</span><span class="n">bat</span>
+<span class="n">scons</span> <span class="p">-</span><span class="n">-target</span><span class="p">=</span><span class="n">mdk5</span>
+</pre></div>
+</div>
+<p>然后用 MDK5 打开 <code class="docutils literal notranslate"><span class="pre">project.uvprojx</span></code>。<code class="docutils literal notranslate"><span class="pre">scons</span> <span class="pre">--target=mdk5</span></code> 只生成工程文件。
+使用 RT-Thread Studio 时，可导入当前目录，或从 SDK 示例列表创建本工程。
+Studio 更新文件列表使用：</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">scons</span> <span class="p">-</span><span class="n">-target</span><span class="p">=</span><span class="n">eclipse</span>
+</pre></div>
+</div>
+<p>执行后刷新 Studio 工程。Linux 使用 <code class="docutils literal notranslate"><span class="pre">sh</span> <span class="pre">mklinks.sh</span></code> 建立共享源码链接。
+本工程链接 <code class="docutils literal notranslate"><span class="pre">rt-thread</span></code>、<code class="docutils literal notranslate"><span class="pre">libraries</span></code>、<code class="docutils literal notranslate"><span class="pre">LVGL-v8.3.11</span></code>、<code class="docutils literal notranslate"><span class="pre">gt911-latest</span></code> 和
+<code class="docutils literal notranslate"><span class="pre">GD32EmbeddedUI-demos</span></code>。SDK 示例导出为独立工程时，这些依赖会复制到工程内；
+此时应打开独立工程 <code class="docutils literal notranslate"><span class="pre">packages/GD32EmbeddedUI-demos/GD32Embeddedui.gdlvgl</span></code>。</p>
+</section>
+<section id="id3">
+<h2>4. 后续修改界面<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>打开上述 <code class="docutils literal notranslate"><span class="pre">.gdlvgl</span></code> 文件，在 GD32EmbeddedUI 中编辑并生成代码。</p></li>
+<li><p>保持 LVGL 8.3.11、720×720、16 位色深。</p></li>
+<li><p>图片和字体使用 C 数组/静态字体输出，放在 <code class="docutils literal notranslate"><span class="pre">generated/</span></code> 下。</p></li>
+<li><p>新增或删除源文件后重新生成 MDK/Studio 工程文件，再进行固件构建和下载。</p></li>
+</ol>
+<p>SCons 自动递归收集 <code class="docutils literal notranslate"><span class="pre">generated/</span></code>、<code class="docutils literal notranslate"><span class="pre">custom/</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">.c</span></code> 文件及头文件目录。
+<code class="docutils literal notranslate"><span class="pre">applications/lv_conf.h</span></code> 加载导出的 <code class="docutils literal notranslate"><span class="pre">ui_config.h</span></code> 和 <code class="docutils literal notranslate"><span class="pre">lv_conf_patch.h</span></code>。
+PC 模拟器、Windows 入口及第三方库不会加入板端构建。</p>
+<p>本示例没有配置资源文件系统、FreeType 或 FFmpeg。设计器预览中使用的文件字体、
+图片路径和视频需要额外移植，不能仅靠复制 <code class="docutils literal notranslate"><span class="pre">assets/</span></code> 在板端使用。</p>
+</section>
+<section id="id4">
+<h2>5. 上板检查<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>UART1 控制台输出工程名称，PC4 LED 闪烁。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list_device</span></code> 和 <code class="docutils literal notranslate"><span class="pre">gino_device_probe</span></code> 可以检查 <code class="docutils literal notranslate"><span class="pre">lcd</span></code>、<code class="docutils literal notranslate"><span class="pre">gt911</span></code> 等设备。</p></li>
+<li><p>显示初始化成功后输出 <code class="docutils literal notranslate"><span class="pre">GD32EmbeddedUI</span> <span class="pre">initialized</span> <span class="pre">(720x720,</span> <span class="pre">RGB565)</span></code>。</p></li>
+<li><p>空白设计默认没有控件；在设计器中添加按钮并生成代码后验证触摸响应。</p></li>
+</ul>
+<p>验证范围为工程生成和相关源码语法检查；完整固件构建、下载和硬件运行仍需验证。</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="页脚">
+        <a href="../Gino_display_camera/README_zh.html" class="btn btn-neutral float-left" title="Gino_display_camera" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+        <a href="../Gino_display_lvgl/README_zh.html" class="btn btn-neutral float-right" title="Gino_display_lvgl" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2026, CYFS。</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      
+    </div>
+      <aside class="sdk-page-outline" role="navigation" aria-label="Local table of contents">
+        <div class="sdk-page-outline__title">目录</div>
+        <ul class="sdk-page-outline__list" aria-label="Article sections"></ul>
+        
+        <div class="sdk-page-outline__fallback" hidden><ul>
+<li><a class="reference internal" href="#">Gino_display_gd32embeddedui</a><ul>
+<li><a class="reference internal" href="#ui">1. 可编辑的 UI 软件包</a></li>
+<li><a class="reference internal" href="#id1">2. 硬件与运行流程</a></li>
+<li><a class="reference internal" href="#id2">3. 打开板级工程</a></li>
+<li><a class="reference internal" href="#id3">4. 后续修改界面</a></li>
+<li><a class="reference internal" href="#id4">5. 上板检查</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      </aside>
+  </div>
+
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="sdk-footer">
+    <div class="sdk-footer__inner">
+      <div class="sdk-footer__left">
+        <strong>GD32H77D-Gino</strong>
+        <span class="sdk-footer__sep">•</span> 版本：1.0.0
+      </div>
+      <div class="sdk-footer__right">
+        构建时间：<span id="sdk-build-time"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      try {
+        var el = document.getElementById('sdk-build-time');
+        if (el) {
+          var d = new Date(document.lastModified);
+          el.textContent = d.toLocaleString();
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+
+</body>
+</html>
