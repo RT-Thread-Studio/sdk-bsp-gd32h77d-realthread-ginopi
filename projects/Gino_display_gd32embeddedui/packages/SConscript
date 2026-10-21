@@ -1,0 +1,31 @@
+import os
+from building import *
+
+objs = []
+cwd = GetCurrentDir()
+
+# Env's version number uses decimal version digits in hexadecimal notation.
+# Select one LVGL package even when older downloads remain in packages/.
+lvgl_package = None
+if GetDepend('PKG_USING_LVGL'):
+    version = GetDepend('PKG_LVGL_VER_NUM')
+    if isinstance(version, str):
+        version = int(version, 0)
+    if version == 0x999999:
+        lvgl_package = 'LVGL-latest'
+    else:
+        digits = '%06x' % version
+        major, minor = int(digits[:2]), int(digits[2:4])
+        suffix = '-latest' if digits[4:] == 'ff' else '.' + str(int(digits[4:]))
+        lvgl_package = 'LVGL-v%d.%d%s' % (major, minor, suffix)
+    if not os.path.isfile(os.path.join(cwd, lvgl_package, 'SConscript')):
+        raise RuntimeError('Missing %s: run mklinks.bat (SDK) or pkgs --update' % lvgl_package)
+
+for item in sorted(os.listdir(cwd)):
+    if item.startswith('LVGL-') and item != lvgl_package:
+        continue
+    sconscript = os.path.join(cwd, item, 'SConscript')
+    if os.path.isfile(sconscript):
+        objs += SConscript(sconscript)
+
+Return('objs')

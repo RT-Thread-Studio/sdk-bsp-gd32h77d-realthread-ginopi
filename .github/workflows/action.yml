@@ -68,6 +68,7 @@ jobs:
           - Gino_driver_eth
           - Gino_display_lvgl
           - Gino_display_lvgl8
+          - Gino_display_gd32embeddedui
           - Gino_display_camera
           - Gino_component_mqtt
           - Gino_factory

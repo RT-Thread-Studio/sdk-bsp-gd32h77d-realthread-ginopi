@@ -1,0 +1,77 @@
+{
+  "version": "1.0.0",
+  "lvglVersion": "v8.3.11",
+  "projectInfo": {
+    "name": "GD32Embeddedui",
+    "createdAt": "2026-10-21T01:30:26.477Z",
+    "modifiedAt": "2026-10-21T02:10:09.550Z",
+    "createdWithVersion": "0.3.0-beta"
+  },
+  "display": {
+    "width": 720,
+    "height": 720,
+    "colorDepth": 16
+  },
+  "screens": [
+    {
+      "id": "screen",
+      "name": "screen",
+      "backgroundOpacity": 0,
+      "widgets": []
+    }
+  ],
+  "assets": {
+    "fonts": [],
+    "images": [],
+    "videos": []
+  },
+  "settings": {
+    "theme": "default",
+    "defaultFont": "",
+    "useMultiLanguage": true
+  },
+  "i18n": {
+    "languages": [
+      {
+        "code": "en",
+        "displayName": "English"
+      }
+    ],
+    "fallbackLanguage": "en",
+    "entries": []
+  },
+  "typographies": [
+    {
+      "id": "Default",
+      "variants": [
+        {
+          "language": "",
+          "fontFile": "preset:NotoSansCJKsc-Regular.otf",
+          "size": 14,
+          "bpp": 4,
+          "fallbackChar": "?"
+        }
+      ],
+      "group": "Default"
+    }
+  ],
+  "typographyGroups": [
+    "Default"
+  ],
+  "systemSettings": {
+    "project": {
+      "colorDepth": 16,
+      "showKeyboard": true
+    },
+    "ide": {
+      "defaultFont": "preset:NotoSansCJKsc-Regular.otf"
+    },
+    "lvgl": {
+      "refreshPeriodMs": 30,
+      "perfMonitor": false,
+      "memMonitor": false,
+      "memSizeKb": 256,
+      "imgCacheSize": 0
+    }
+  }
+}
