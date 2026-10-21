@@ -400,9 +400,9 @@
               <FilePath>applications\device_probe.c</FilePath>
             </File>
             <File>
-              <FileName>gd32vw553_at_port.c</FileName>
+              <FileName>at_sample_gd32vw553.c</FileName>
               <FileType>1</FileType>
-              <FilePath>applications\gd32vw553_at_port.c</FilePath>
+              <FilePath>packages\at_device-latest\samples\at_sample_gd32vw553.c</FilePath>
             </File>
             <File>
               <FileName>gd32vw553_mqtt_demo.c</FileName>

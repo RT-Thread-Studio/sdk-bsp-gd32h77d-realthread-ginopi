@@ -64,7 +64,7 @@ Default console: UART1, PA2/PA3, AF7, 115200-8-N-1.
 Source paths below are relative to the project directory in the SDK repository:
 
 - `applications/gd32vw553_mqtt_demo.c`
-- `applications/gd32vw553_at_port.c`
+- `../../packages/at_device-latest/samples/at_sample_gd32vw553.c`
 - `../../packages/kawaii-mqtt-latest/`
 - `../../packages/at_device-latest/class/gd32vw553/`
 

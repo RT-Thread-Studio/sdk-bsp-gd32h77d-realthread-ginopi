@@ -43,7 +43,7 @@ Scan log 保留响应地址、异常和最终结果。SPI、I2C 测试执行期�
            -> Enable GD32VW553 AT Wi-Fi module
    ```
 
-3. 保持模块启用，将 `Wi-Fi SSID` 和 `Wi-Fi password` 改为自己的网络名称和密码。`GD32VW553 AT UART baud rate` 保持为 `115200`；若模块固件使用其他波特率，则与固件保持一致。
+3. 保持模块启用，进入 `RT-Thread online packages -> IoT - internet of things -> AT DEVICE`，版本选择 `latest`，在 `GigaDevice GD32VW553 -> Enable sample` 中设置 `WIFI ssid` 和 `WIFI password`。`AT UART baud rate` 保持为 `115200`；若模块固件使用其他波特率，则与固件保持一致。板级开关会自动启用注册 sample，并将复位脚默认为 PC5（编号 37）、低电平有效。
 4. 保存退出后，执行 `scons --pyconfig-silent` 更新 `rtconfig.h`。使用 MDK5 时，再执行 `scons --target=mdk5` 更新工程文件。
 
 ![Env 中的 Wi-Fi 配置](figures/wifi-env.png)
@@ -52,17 +52,17 @@ Scan log 保留响应地址、异常和最终结果。SPI、I2C 测试执行期�
 
 1. 打开出厂工程的 `RT-Thread Settings`，选择“硬件”页签。
 2. 展开 `Board extended module Drivers -> Enable GD32VW553 AT Wi-Fi module`，保持模块启用。
-3. 修改 `Wi-Fi SSID` 和 `Wi-Fi password`，确认 AT 串口波特率，保存设置以更新工程配置。
+3. 切换到软件包设置，在 `AT DEVICE`（`latest`）的 `GigaDevice GD32VW553 -> Enable sample` 中修改 `WIFI ssid` 和 `WIFI password`，确认 AT 串口波特率后保存。截图为此前的配置布局，Wi-Fi 参数现已统一到软件包 sample 菜单。
 
 ![RT-Thread Studio 中的 Wi-Fi 配置](figures/wifi-studio.png)
 
-这两个配置项分别对应 `BSP_GD32VW553_WIFI_SSID` 和 `BSP_GD32VW553_WIFI_PASSWORD`。请填写自己的网络信息，截图中的数值仅作示例。保存后重新编译、下载出厂固件，并复位开发板，使配置生效。
+这两个配置项分别对应 `GD32VW553_SAMPLE_WIFI_SSID` 和 `GD32VW553_SAMPLE_WIFI_PASSWORD`。请填写自己的网络信息，截图中的数值仅作示例。保存后重新编译、下载出厂固件，并复位开发板，使配置生效。
 
 ### 1.2 Wi-Fi 与 MQTT 验证
 
 在 UART1 控制台执行 `ifconfig`，确认 `wifi0` 已启用、链路已连接，且 IP 地址不是 `0.0.0.0`。出厂工程同时启用了以太网 `e0`，以太网已连接不代表 Wi-Fi 已就绪。若 `wifi0` 未联网，检查 SSID、密码、热点是否可用、模块供电与复位，以及 AT 串口波特率。
 
-使用 MQTT 时，在同一配置菜单中保持 `Enable GD32VW553 MQTT demo` 启用，并按自己的服务设置 Broker 地址/端口、订阅/发布主题、client ID 和可选的用户名/密码。主题可以自行定义。模块固件不支持 `AT+CIPDOMAIN` DNS 查询时，使用数字 IPv4 Broker 地址。
+使用 MQTT 时，在板级 GD32VW553 配置菜单中保持 `Enable GD32VW553 MQTT demo` 启用，并按自己的服务设置 Broker 地址/端口、订阅/发布主题、client ID 和可选的用户名/密码。主题可以自行定义。模块固件不支持 `AT+CIPDOMAIN` DNS 查询时，使用数字 IPv4 Broker 地址。
 
 配置生效并确认 `wifi0` 就绪后，执行：
 

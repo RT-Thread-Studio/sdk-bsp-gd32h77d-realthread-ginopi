@@ -43,7 +43,7 @@ The onboard GD32VW553 AT module uses UART4 (TX PB12, RX PB13, AF14), with PC5 co
            -> Enable GD32VW553 AT Wi-Fi module
    ```
 
-3. Keep the module enabled and set `Wi-Fi SSID` and `Wi-Fi password` to your network's values. Keep `GD32VW553 AT UART baud rate` at `115200` unless the module firmware uses a different rate.
+3. Keep the module enabled. Open `RT-Thread online packages -> IoT - internet of things -> AT DEVICE`, select `latest`, and configure `GigaDevice GD32VW553 -> Enable sample`. Set `WIFI ssid` and `WIFI password` to your network's values. Keep `AT UART baud rate` at `115200` unless the module firmware uses a different rate. The board enables the registration sample automatically and defaults its reset pin to PC5 (37), active low.
 4. Save and exit, then run `scons --pyconfig-silent` to update `rtconfig.h`. For MDK5, also run `scons --target=mdk5` to update the project files.
 
 ![Wi-Fi configuration in Env](figures/wifi-env.png)
@@ -52,17 +52,17 @@ The onboard GD32VW553 AT module uses UART4 (TX PB12, RX PB13, AF14), with PC5 co
 
 1. Open the factory project's `RT-Thread Settings` and select the hardware tab.
 2. Expand `Board extended module Drivers -> Enable GD32VW553 AT Wi-Fi module` and keep the module enabled.
-3. Set `Wi-Fi SSID` and `Wi-Fi password`, confirm the AT UART baud rate, and save the settings to update the project configuration.
+3. Switch to the software package settings. Under `AT DEVICE` (`latest`) -> `GigaDevice GD32VW553` -> `Enable sample`, set `WIFI ssid` and `WIFI password`, confirm the AT UART baud rate, and save. The screenshots show the previous configuration layout; Wi-Fi settings now belong to the package sample.
 
 ![Wi-Fi configuration in RT-Thread Studio](figures/wifi-studio.png)
 
-The two fields correspond to `BSP_GD32VW553_WIFI_SSID` and `BSP_GD32VW553_WIFI_PASSWORD`. Use your own network values instead of the values shown in the screenshots. After saving, rebuild and download the factory firmware, then reset the board to apply the configuration.
+The two fields correspond to `GD32VW553_SAMPLE_WIFI_SSID` and `GD32VW553_SAMPLE_WIFI_PASSWORD`. Use your own network values instead of the values shown in the screenshots. After saving, rebuild and download the factory firmware, then reset the board to apply the configuration.
 
 ### 1.2 Wi-Fi and MQTT Verification
 
 Run `ifconfig` on UART1 and confirm that `wifi0` is up, its link is up, and its IP address is not `0.0.0.0`. The factory project also enables Ethernet `e0`; an Ethernet connection alone does not confirm that Wi-Fi is ready. If `wifi0` does not connect, check the SSID, password, access point availability, module power/reset, and AT UART baud rate.
 
-To use MQTT, keep `Enable GD32VW553 MQTT demo` enabled in the same configuration menu and set the broker address/port, subscribe/publish topics, client ID, and optional username/password for your service. You can use your own topics. Use a numeric IPv4 broker address when the module firmware does not support DNS through `AT+CIPDOMAIN`.
+To use MQTT, keep `Enable GD32VW553 MQTT demo` enabled in the board GD32VW553 configuration menu and set the broker address/port, subscribe/publish topics, client ID, and optional username/password for your service. You can use your own topics. Use a numeric IPv4 broker address when the module firmware does not support DNS through `AT+CIPDOMAIN`.
 
 After applying the configuration and confirming that `wifi0` is ready, run:
 

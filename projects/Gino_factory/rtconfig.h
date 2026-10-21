@@ -232,7 +232,9 @@
 
 /* POSIX (Portable Operating System Interface) layer */
 
+
 /* Interprocess Communication (IPC) */
+
 
 /* Socket is in the 'Network' category */
 
@@ -345,6 +347,9 @@
 /* RT-Thread Utestcases */
 
 /* end of RT-Thread Utestcases */
+#define SOC_FAMILY_GD32
+#define SOC_SERIES_GD32H7xx
+#define GD32VW553_SAMPLE_RESET_PIN 37
 
 /* RT-Thread online packages */
 
@@ -399,6 +404,16 @@
 /* end of CYW43439 WiFi */
 /* end of Wi-Fi */
 #define PKG_USING_AT_DEVICE
+#define AT_DEVICE_USING_GD32VW553
+#define AT_DEVICE_GD32VW553_SOCKET
+#define AT_DEVICE_GD32VW553_SAMPLE
+#define GD32VW553_SAMPLE_DEVICE_NAME "wifi0"
+#define GD32VW553_SAMPLE_WIFI_SSID "RTT"
+#define GD32VW553_SAMPLE_WIFI_PASSWORD "12345678"
+#define GD32VW553_SAMPLE_CLIENT_NAME "uart4"
+#define GD32VW553_SAMPLE_BAUDRATE 115200
+#define GD32VW553_SAMPLE_RECV_LINE_NUM 1024
+#define GD32VW553_SAMPLE_RESET_ACTIVE_LEVEL 0
 #define PKG_USING_AT_DEVICE_LATEST_VERSION
 #define PKG_AT_DEVICE_VER_NUM 0x99999
 
@@ -464,9 +479,6 @@
 
 /* peripheral libraries and drivers */
 
-#define PKG_USING_I2C_TOOLS
-#define PKG_USING_I2C_TOOLS_V100
-
 /* HAL & SDK Drivers */
 
 /* STM32 HAL & SDK Drivers */
@@ -520,6 +532,10 @@
 /* NOVOSNS Drivers */
 
 /* end of NOVOSNS Drivers */
+
+/* N32 Drivers */
+
+/* end of N32 Drivers */
 /* end of HAL & SDK Drivers */
 
 /* sensors drivers */
@@ -531,6 +547,8 @@
 #define PKG_USING_GT911
 #define PKG_USING_GT911_LATEST_VERSION
 /* end of touch drivers */
+#define PKG_USING_I2C_TOOLS
+#define PKG_USING_I2C_TOOLS_V100
 /* end of peripheral libraries and drivers */
 
 /* AI packages */
@@ -557,6 +575,7 @@
 /* end of miscellaneous packages */
 
 /* Arduino libraries */
+
 
 /* Projects and Demos */
 
@@ -600,8 +619,6 @@
 
 /* end of Arduino libraries */
 /* end of RT-Thread online packages */
-#define SOC_FAMILY_GD32
-#define SOC_SERIES_GD32H7xx
 
 /* Hardware Drivers Config */
 
@@ -714,12 +731,7 @@
 
 /* Board extended module Drivers */
 
-#define AT_DEVICE_USING_GD32VW553
-#define AT_DEVICE_GD32VW553_SOCKET
 #define BSP_USING_GD32VW553_AT
-#define BSP_GD32VW553_AT_BAUDRATE 115200
-#define BSP_GD32VW553_WIFI_SSID "CYFS_HW"
-#define BSP_GD32VW553_WIFI_PASSWORD "123456789"
 #define BSP_USING_GD32VW553_MQTT_DEMO
 #define BSP_GD32VW553_MQTT_HOST "broker.emqx.io"
 #define BSP_GD32VW553_MQTT_PORT 1883

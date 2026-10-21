@@ -248,8 +248,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>applications\gd32vw553_at_port.c</PathWithFileName>
-      <FilenameWithoutPath>gd32vw553_at_port.c</FilenameWithoutPath>
+      <PathWithFileName>packages\at_device-latest\samples\at_sample_gd32vw553.c</PathWithFileName>
+      <FilenameWithoutPath>at_sample_gd32vw553.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
