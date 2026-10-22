@@ -14,7 +14,7 @@ board:
   sale_contact_global: https://www.rt-thread.org/
   small_image: figures/board.png
   vendor: GigaDevice
-  version: 1.0.0
+  version: 1.1.0
 chip:
   chip_name: GD32H77DIW
   clock_source: HXTAL
