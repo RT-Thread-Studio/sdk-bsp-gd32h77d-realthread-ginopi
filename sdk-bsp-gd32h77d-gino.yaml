@@ -14,7 +14,7 @@ board:
   sale_contact_global: https://www.rt-thread.org/
   small_image: figures/board.png
   vendor: GigaDevice
-  version: 1.0.0
+  version: 1.1.0
 chip:
   chip_name: GD32H77DIW
   clock_source: HXTAL
@@ -44,7 +44,7 @@ features_zh:
 - GD32VW553 AT Wi-Fi 与 MQTT
 pkg_type: Board_Support_Packages
 pkg_vendor: RealThread
-pkg_version: 1.0.0
+pkg_version: 1.1.0
 example_projects:
 - project_name: Gino_driver_i2c
   project_description: I2C1 硬件总线参考工程
